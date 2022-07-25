@@ -26,3 +26,9 @@ class Predmet:
 
     def trenutna_ocena(self):
         return round(self.trenutno_povprecje())   
+
+class SolskoLeto:
+    pass
+
+class Stanje:
+    pass
