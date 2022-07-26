@@ -23,7 +23,7 @@ class Predmet:
         else:
             return "Tega rezultata ni v redovalnici."
 
-    def vpisi_oceno(self, opis, kolicina):
+    def vpisi_oceno(self, opis, kolicina=None):
         if opis in self.ocene.keys():
             return "Ta opis je že uporabljen."
         else:
