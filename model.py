@@ -29,6 +29,8 @@ class Predmet:
         else:
             self.ocene[opis] = kolicina
 
+#razmisli, če je mogoče bolje da je default 0
+
     def izbrisi_oceno(self, opis):
         if opis in self.ocene.keys():
             del self.ocene[opis]
