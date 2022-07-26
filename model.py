@@ -1,8 +1,11 @@
 class Predmet:
-    def __init__(self, ime, slovar={}, st=2):
+    def __init__(self, ime, slovar={}, st=2, slovar_ocen={}, numerus=2):
         self.ime = ime
         self.rezultati = slovar
         self.stevilo_kolokvijev = st
+        self.ocene = slovar_ocen
+        self.stevilo_ocen = numerus
+
 
     def dodaj_rezultat(self, opis, kolicina):
         if opis in self.rezultati.keys():
@@ -15,6 +18,18 @@ class Predmet:
             del self.rezultati[opis]
         else:
             return "Tega rezultata ni v redovalnici."
+
+    def vpisi_oceno(self, opis, kolicina):
+        if opis in self.ocene.keys():
+            return "Ta opis je že uporabljen."
+        else:
+            self.ocene[opis] = kolicina
+
+    def izbrisi_oceno(self, opis):
+        if opis in self.ocene.keys():
+            del self.ocene[opis]
+        else:
+            return "Te ocene ni v redovalnici."
 
     def seznam_rezultatov(self):
         return [res for res in self.rezultati.values()]
@@ -54,6 +69,7 @@ class Predmet:
         elif out <= 0:
             return f"Oceno {ocena} imate že zagotovljeno."
         return f"Za {ocena} v povprečju potrebujete {out} odstotkov na vsak preostali kolokvij."
+
 
 
 class SolskoLeto:
