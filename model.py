@@ -6,10 +6,6 @@ class Predmet:
         self.ocene = slovar_ocen
         self.stevilo_ocen = numerus
 
-    #obejktu razreda Predmet dodelimo ime, slovar rezultatov kolokvijev, stevilo kolokvijev,
-    #slovar ocen, ki se vpišejo pri predmetu, in število ocen pri predmetu (za kasneje)
-    #default value za število ocen pri predmetu je 2, vrednost bo potrebna za izračun povprečja v letniku kasneje
-    #ideja je, da ločimo beleženje rezultatov na kolokvijih in vpis ocen, saj ni nujno, da bo ocena iz kolokvijev dejansko vpisana
 
     def dodaj_rezultat(self, opis, kolicina):
         if opis in self.rezultati.keys():
@@ -28,8 +24,6 @@ class Predmet:
             return "Ta opis je že uporabljen."
         else:
             self.ocene[opis] = kolicina
-
-    #razmisli, če je mogoče bolje da je default 0
 
     def izbrisi_oceno(self, opis):
         if opis in self.ocene.keys():
@@ -55,14 +49,20 @@ class Predmet:
             out += oc
         return out
 
-    def trenutno_povprecje(self): 
+    def trenutno_povprecje(self):
+        if self.seznam_rezultatov() == []:
+            return "Noben rezultat še ni bil dodan." 
         return round(self.trenutna_vsota_rezultatov() / len(self.seznam_rezultatov()), 2)
 
     def trenutno_povprecje_ocen(self):
+        if self.seznam_ocen() == []:
+            return "Nobena ocena še ni bila vpisana."
         return round(self.trenutna_vsota_ocen() / len(self.seznam_ocen()), 2)
 
     def trenutna_ocena_iz_rezultatov(self):
-        if self.trenutno_povprecje() < 50:
+        if self.seznam_rezultatov() == []:
+            return "Noben rezultat še ni bil dodan."
+        elif self.trenutno_povprecje() < 50:
             return 5
         elif self.trenutno_povprecje() == 100:
             return 10
