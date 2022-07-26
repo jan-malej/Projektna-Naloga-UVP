@@ -6,10 +6,10 @@ class Predmet:
         self.ocene = slovar_ocen
         self.stevilo_ocen = numerus
 
-#obejktu razreda Predmet dodelimo ime, slovar rezultatov kolokvijev, stevilo kolokvijev,
-#slovar ocen, ki se vpišejo pri predmetu, in število ocen pri predmetu (za kasneje)
-#default value za število ocen pri predmetu je 2, vrednost bo potrebna za izračun povprečja v letniku kasneje
-#ideja je, da ločimo beleženje rezultatov na kolokvijih in vpis ocen, saj ni nujno, da bo ocena iz kolokvijev dejansko vpisana
+    #obejktu razreda Predmet dodelimo ime, slovar rezultatov kolokvijev, stevilo kolokvijev,
+    #slovar ocen, ki se vpišejo pri predmetu, in število ocen pri predmetu (za kasneje)
+    #default value za število ocen pri predmetu je 2, vrednost bo potrebna za izračun povprečja v letniku kasneje
+    #ideja je, da ločimo beleženje rezultatov na kolokvijih in vpis ocen, saj ni nujno, da bo ocena iz kolokvijev dejansko vpisana
 
     def dodaj_rezultat(self, opis, kolicina):
         if opis in self.rezultati.keys():
@@ -29,7 +29,7 @@ class Predmet:
         else:
             self.ocene[opis] = kolicina
 
-#razmisli, če je mogoče bolje da je default 0
+    #razmisli, če je mogoče bolje da je default 0
 
     def izbrisi_oceno(self, opis):
         if opis in self.ocene.keys():
@@ -40,19 +40,28 @@ class Predmet:
     def seznam_rezultatov(self):
         return [res for res in self.rezultati.values()]
 
+    def seznam_ocen(self):
+        return[oc for oc in self.ocene.values()]
+
     def trenutna_vsota_rezultatov(self):
         out = 0
         for res in self.seznam_rezultatov():
             out += res
         return out
 
-    def trenutno_povprecje(self):
-        vsota = 0
-        for st in self.seznam_rezultatov():
-            vsota += st  
-        return round(vsota / len(self.seznam_rezultatov()), 2)
+    def trenutna_vsota_ocen(self):
+        out = 0
+        for oc in self.seznam_ocen():
+            out += oc
+        return out
 
-    def trenutna_ocena(self):
+    def trenutno_povprecje(self): 
+        return round(self.trenutna_vsota_rezultatov() / len(self.seznam_rezultatov()), 2)
+
+    def trenutno_povprecje_ocen(self):
+        return round(self.trenutna_vsota_ocen() / len(self.seznam_ocen()), 2)
+
+    def trenutna_ocena_iz_rezultatov(self):
         if self.trenutno_povprecje() < 50:
             return 5
         elif self.trenutno_povprecje() == 100:
