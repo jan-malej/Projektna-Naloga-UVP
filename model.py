@@ -86,9 +86,29 @@ class Predmet:
         return f"Za {ocena} v povprečju potrebujete {out} odstotkov na vsak preostali kolokvij."
 
 
-
 class SolskoLeto:
-    pass
+    def __init__(self, ime):
+        self.ime = ime
+        self.predmeti = []
+
+    def dodaj_predmet(self, predmet):
+        self.predmeti.append(predmet)
+
+    def odstrani_predmet(self, predmet):
+        self.predmeti.remove(predmet)
+
+    def povprecje(self):
+        if len(self.predmeti) == 0:
+            return "Najprej je potrebno vpisati vsaj en predmet."
+        vsota = 0
+        stevec = 0
+        for predmet in self.predmeti:
+            for oc in predmet.seznam_ocen():
+                vsota += oc
+                stevec += 1
+        if stevec == 0:
+            return "Najprej je potrebno vpisati kakšno oceno."
+        return round(vsota / stevec, 2)
 
 class Stanje:
     pass
