@@ -111,4 +111,6 @@ class SolskoLeto:
         return round(vsota / stevec, 2)
 
 class Stanje:
-    pass
+    def __init__(self):
+        self.solska_leta = []
+        self.aktualno_solsko_leto = None
