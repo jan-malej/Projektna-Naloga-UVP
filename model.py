@@ -6,7 +6,12 @@ class Predmet:
         self.ocene = slovar_ocen
         self.stevilo_ocen = numerus
 
+    def nastavi_st_kolokvijev(self, n):
+        self.stevilo_kolokvijev = n
 
+    def nastavi_st_ocen(self, n):
+        self.stevilo_ocen = n
+    
     def dodaj_rezultat(self, opis, kolicina):
         if opis in self.rezultati.keys():
             return "Ta opis je že uporabljen."
@@ -89,7 +94,7 @@ class Predmet:
 class SolskoLeto:
     def __init__(self, ime):
         self.ime = ime
-        self.predmeti = []
+        self.predmeti = {}
 
     def dodaj_predmet(self, predmet):
         self.predmeti.append(predmet)
@@ -114,3 +119,33 @@ class Stanje:
     def __init__(self):
         self.solska_leta = []
         self.aktualno_solsko_leto = None
+
+    def dodaj_solsko_leto(self, ime):
+        leto = SolskoLeto(ime)
+        self.solska_leta.append(leto)
+        if not self.aktualno_solsko_leto:
+            self.aktualno_solsko_leto = leto
+
+    def izbrisi_solsko_leto(self, s_leto):
+        self.solska_leta.remove(s_leto)
+
+    def nastavi_aktualno(self, s_leto):
+        self.aktualno_solsko_leto = s_leto
+
+    def dodaj_predmet(self, predmet):
+        self.aktualno_solsko_leto.dodaj_predmet(predmet)
+
+    def odstrani_predmet(self, predmet):
+        self.aktualno_solsko_leto.odstrani_predmet(predmet)
+
+    def vpisi_oceno(self):
+        pass
+
+    def izbrisi_oceno(self):
+        pass
+
+    def dodaj_rezultat(self):
+        pass
+
+    def odstrani_rezultat(self):
+        pass
