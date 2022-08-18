@@ -180,3 +180,9 @@ class Stanje:
             self.aktualno_solsko_leto.predmeti[ime_predmeta].nastavi_st_ocen(n) 
         else:
             return "Tega predmeta ni v tem šolskem letu."
+
+    def nalozi_iz_datoteke(self):
+        pass
+
+    def zapisi_v_datoteko(self):
+        pass
