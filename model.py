@@ -1,3 +1,5 @@
+import json
+
 class Predmet:
     def __init__(self, ime, slovar={}, st=2, slovar_ocen={}, numerus=2):
         self.ime = ime
