@@ -96,18 +96,23 @@ class SolskoLeto:
         self.ime = ime
         self.predmeti = {}
 
-    def dodaj_predmet(self, predmet):
-        self.predmeti.append(predmet)
+    def dodaj_predmet(self, ime):
+        if ime in self.predmeti.keys():
+            return "Dva predmeta ne moreta imeti enakih imen. To ime je že uporabljeno."
+        predmet = Predmet(ime)
+        self.predmeti[ime] = predmet
 
-    def odstrani_predmet(self, predmet):
-        self.predmeti.remove(predmet)
+    def odstrani_predmet(self, ime):
+        if ime in self.predmeti.keys():
+            del self.predmeti[ime]
+        return "Tega predmeta ni v redovalnici."
 
     def povprecje(self):
         if len(self.predmeti) == 0:
             return "Najprej je potrebno vpisati vsaj en predmet."
         vsota = 0
         stevec = 0
-        for predmet in self.predmeti:
+        for predmet in self.predmeti.values():
             for oc in predmet.seznam_ocen():
                 vsota += oc
                 stevec += 1
@@ -138,14 +143,38 @@ class Stanje:
     def odstrani_predmet(self, predmet):
         self.aktualno_solsko_leto.odstrani_predmet(predmet)
 
-    def vpisi_oceno(self):
-        pass
+    def vpisi_oceno(self, ime_predmeta, opis, kolicina):
+        if ime_predmeta in self.aktualno_solsko_leto.predmeti.keys():
+            self.aktualno_solsko_leto.predmeti[ime_predmeta].vpisi_oceno(opis, kolicina)
+        else:
+            return "Tega predmeta ni v tem šolskem letu."
 
-    def izbrisi_oceno(self):
-        pass
+    def izbrisi_oceno(self, ime_predmeta, opis):
+        if ime_predmeta in self.aktualno_solsko_leto.predmeti.keys():
+            self.aktualno_solsko_leto.predmeti[ime_predmeta].izbrisi_oceno(opis) 
+        else:
+            return "Tega predmeta ni v tem šolskem letu."
 
-    def dodaj_rezultat(self):
-        pass
+    def dodaj_rezultat(self, ime_predmeta, opis, kolicina):
+        if ime_predmeta in self.aktualno_solsko_leto.predmeti.keys():
+            self.aktualno_solsko_leto.predmeti[ime_predmeta].dodaj_rezultat(opis, kolicina)
+        else:
+            return "Tega predmeta ni v tem šolskem letu."
 
-    def odstrani_rezultat(self):
-        pass
+    def odstrani_rezultat(self, ime_predmeta, opis):
+        if ime_predmeta in self.aktualno_solsko_leto.predmeti.keys():
+            self.aktualno_solsko_leto.predmeti[ime_predmeta].odstrani_rezultat(opis) 
+        else:
+            return "Tega predmeta ni v tem šolskem letu."
+
+    def nastavi_st_kolokvijev(self, ime_predmeta, n):
+        if ime_predmeta in self.aktualno_solsko_leto.predmeti.keys():
+            self.aktualno_solsko_leto.predmeti[ime_predmeta].nastavi_st_kolokvijev(n) 
+        else:
+            return "Tega predmeta ni v tem šolskem letu."
+
+    def nastavi_st_ocen(self, ime_predmeta, n):
+        if ime_predmeta in self.aktualno_solsko_leto.predmeti.keys():
+            self.aktualno_solsko_leto.predmeti[ime_predmeta].nastavi_st_ocen(n) 
+        else:
+            return "Tega predmeta ni v tem šolskem letu."
