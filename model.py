@@ -1,11 +1,11 @@
 import json
 
 class Predmet:
-    def __init__(self, ime, slovar={}, st=2, slovar_ocen={}, numerus=2):
+    def __init__(self, ime, st=2, numerus=2):
         self.ime = ime
-        self.rezultati = slovar
+        self.rezultati = []
         self.stevilo_kolokvijev = st
-        self.ocene = slovar_ocen
+        self.ocene = []
         self.stevilo_ocen = numerus
 
     def nastavi_st_kolokvijev(self, n):
@@ -14,35 +14,51 @@ class Predmet:
     def nastavi_st_ocen(self, n):
         self.stevilo_ocen = n
     
+    def opisi_rezultatov(self):
+        out = []
+        for rez in self.rezultati:
+            out.append(rez[0])
+        return out
+
+    def opisi_ocen(self):
+        out = []
+        for oc in self.ocene:
+            out.append(oc[0])
+        return out
+    
     def dodaj_rezultat(self, opis, kolicina):
-        if opis in self.rezultati.keys():
+        if opis in self.opisi_rezultatov():
             return "Ta opis je že uporabljen."
         else:
-            self.rezultati[opis] = kolicina
-
+            self.rezultati.append((opis, kolicina))
+            
     def odstrani_rezultat(self, opis):
-        if opis in self.rezultati.keys():
-            del self.rezultati[opis]
+        if opis in self.opisi_rezultatov():
+            for tup in self.rezultati:
+                if tup[0] == opis:
+                    self.rezultati.remove(tup)
         else:
             return "Tega rezultata ni v redovalnici."
 
     def vpisi_oceno(self, opis, kolicina=None):
-        if opis in self.ocene.keys():
+        if opis in self.opisi_ocen():
             return "Ta opis je že uporabljen."
         else:
-            self.ocene[opis] = kolicina
+            self.ocene.append((opis, kolicina))
 
     def izbrisi_oceno(self, opis):
-        if opis in self.ocene.keys():
-            del self.ocene[opis]
+        if opis in self.opisi_ocen():
+            for tup in self.ocene:
+                if tup[0] == opis:
+                    self.ocene.remove(tup)
         else:
             return "Te ocene ni v redovalnici."
 
     def seznam_rezultatov(self):
-        return [res for res in self.rezultati.values()]
+        return [res[1] for res in self.rezultati]
 
     def seznam_ocen(self):
-        return[oc for oc in self.ocene.values()]
+        return[oc[1] for oc in self.ocene]
 
     def trenutna_vsota_rezultatov(self):
         out = 0
@@ -103,11 +119,11 @@ class Predmet:
 
     @staticmethod
     def iz_slovarja(slovar):
-        return Predmet(slovar['ime'],
-        slovar['rezultati'],
+        out = Predmet(slovar['ime'],
         slovar['stevilo_kolokvijev'],
-        slovar['ocene'],
         slovar['stevilo_ocen'])
+        out.rezultati = slovar['rezultati']
+        out.ocene = slovar['ocene']
 
 class SolskoLeto:
     def __init__(self, ime):
@@ -232,3 +248,18 @@ class Stanje:
         with open(datoteka) as dat:
             slovar = json.load(dat)
             return Stanje.iz_slovarja(slovar)
+
+
+a = Predmet('analiza', {'ena': 1})
+b = Predmet('algebra', {'dva': 2})
+c = Predmet('fizika', )
+
+b.dodaj_rezultat('prvi kolokvij', 100)
+a.dodaj_rezultat('prvi kolokvij', 90)
+print(a.ime)
+print(b.ime)
+
+primer = SolskoLeto('2021')
+print(primer.ime, primer.predmeti)
+primer.dodaj_predmet('algebra')
+print(primer.predmeti)
