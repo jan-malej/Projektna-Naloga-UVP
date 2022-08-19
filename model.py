@@ -124,6 +124,7 @@ class Predmet:
         slovar['stevilo_ocen'])
         out.rezultati = slovar['rezultati']
         out.ocene = slovar['ocene']
+        return out
 
 class SolskoLeto:
     def __init__(self, ime):
