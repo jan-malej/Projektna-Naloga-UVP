@@ -178,57 +178,82 @@ class Stanje:
         self.solska_leta = []
         self.aktualno_solsko_leto = None
 
-    def dodaj_solsko_leto(self, ime):
+    def imena_solskih_let(self):
+        out = []
+        for s_leto in self.solska_leta:
+            out.append(s_leto.ime)
+
+    def dodaj_solsko_leto(self, ime): # mogoče bo treba metodo spremeniti da sprejme direktno objekt razreda solsko leto
+        if ime in self.imena_solskih_let():
+            return "Dve šolski leti ne smeta imeti enakih imen. To ime je že uporabljeno." 
         leto = SolskoLeto(ime)
         self.solska_leta.append(leto)
         if not self.aktualno_solsko_leto:
             self.aktualno_solsko_leto = leto
 
-    def izbrisi_solsko_leto(self, s_leto):
-        self.solska_leta.remove(s_leto)
+    def izbrisi_solsko_leto(self, ime):
+        if ime in self.imena_solskih_let():
+            for s_leto in self.solska_leta:
+                if s_leto.ime == ime:
+                    self.solska_leta.remove(s_leto)
+        else:
+            return "Tega šolskega leta ni v redovalnici"
 
     def nastavi_aktualno(self, s_leto):
         self.aktualno_solsko_leto = s_leto
 
-    def dodaj_predmet(self, predmet):
+    def dodaj_predmet(self, ime, st_kolokvijev=2, st_ocen=2):
+        predmet = Predmet(ime, st_kolokvijev, st_ocen)
         self.aktualno_solsko_leto.dodaj_predmet(predmet)
 
     def odstrani_predmet(self, predmet):
         self.aktualno_solsko_leto.odstrani_predmet(predmet)
 
     def vpisi_oceno(self, ime_predmeta, opis, kolicina):
-        if ime_predmeta in self.aktualno_solsko_leto.predmeti.keys():
-            self.aktualno_solsko_leto.predmeti[ime_predmeta].vpisi_oceno(opis, kolicina)
+        if ime_predmeta in self.aktualno_solsko_leto.imena_predmetov():
+            for pr in self.aktualno_solsko_leto.predmeti:
+                if pr.ime == ime_predmeta:
+                    pr.vpisi_oceno((opis, kolicina))
         else:
             return "Tega predmeta ni v tem šolskem letu."
 
     def izbrisi_oceno(self, ime_predmeta, opis):
-        if ime_predmeta in self.aktualno_solsko_leto.predmeti.keys():
-            self.aktualno_solsko_leto.predmeti[ime_predmeta].izbrisi_oceno(opis) 
+        if ime_predmeta in self.aktualno_solsko_leto.imena_predmetov():
+            for pr in self.aktualno_solsko_leto.predmeti:
+                if pr.ime == ime_predmeta:
+                    pr.izbrisi_oceno(opis) 
         else:
             return "Tega predmeta ni v tem šolskem letu."
 
     def dodaj_rezultat(self, ime_predmeta, opis, kolicina):
-        if ime_predmeta in self.aktualno_solsko_leto.predmeti.keys():
-            self.aktualno_solsko_leto.predmeti[ime_predmeta].dodaj_rezultat(opis, kolicina)
+        if ime_predmeta in self.aktualno_solsko_leto.imena_predmetov():
+            for pr in self.aktualno_solsko_leto.predmeti:
+                if pr.ime == ime_predmeta:
+                    pr.dodaj_rezultat((opis, kolicina))
         else:
             return "Tega predmeta ni v tem šolskem letu."
 
     def odstrani_rezultat(self, ime_predmeta, opis):
-        if ime_predmeta in self.aktualno_solsko_leto.predmeti.keys():
-            self.aktualno_solsko_leto.predmeti[ime_predmeta].odstrani_rezultat(opis) 
+        if ime_predmeta in self.aktualno_solsko_leto.imena_predmetov():
+            for pr in self.aktualno_solsko_leto.predmeti:
+                if pr.ime == ime_predmeta:
+                    pr.odstrani_rezultat(opis) 
         else:
             return "Tega predmeta ni v tem šolskem letu."
 
     def nastavi_st_kolokvijev(self, ime_predmeta, n):
-        if ime_predmeta in self.aktualno_solsko_leto.predmeti.keys():
-            self.aktualno_solsko_leto.predmeti[ime_predmeta].nastavi_st_kolokvijev(n) 
+        if ime_predmeta in self.aktualno_solsko_leto.imena_predmetov():
+            for pr in self.aktualno_solsko_leto.predmeti:
+                if pr.ime == ime_predmeta:
+                    pr.nastavi_st_kolokvijev(n) 
         else:
             return "Tega predmeta ni v tem šolskem letu."
 
     def nastavi_st_ocen(self, ime_predmeta, n):
-        if ime_predmeta in self.aktualno_solsko_leto.predmeti.keys():
-            self.aktualno_solsko_leto.predmeti[ime_predmeta].nastavi_st_ocen(n) 
+        if ime_predmeta in self.aktualno_solsko_leto.imena_predmetov():
+            for pr in self.aktualno_solsko_leto.predmeti:
+                if pr.ime == ime_predmeta:
+                    pr.nastavi_st_ocen(n) 
         else:
             return "Tega predmeta ni v tem šolskem letu."
 
