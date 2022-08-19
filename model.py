@@ -211,8 +211,24 @@ class Stanje:
         else:
             return "Tega predmeta ni v tem šolskem letu."
 
-    def nalozi_iz_datoteke(self):
-        pass
+    def v_slovar(self):
+        return {
+            'solska_leta': [leto.v_slovar() for leto in self.solska_leta]
+        }
 
-    def zapisi_v_datoteko(self):
-        pass
+    @staticmethod
+    def iz_slovarja(slovar):
+        out = Stanje()
+        out.solska_leta = [SolskoLeto.iz_slovarja(sl) for sl in slovar['solska_leta']]
+        return out
+
+    def zapisi_v_datoteko(self, datoteka):
+        with open(datoteka, 'w') as dat:
+            slovar = self.v_slovar()
+            json.dump(slovar, dat)
+
+    @staticmethod
+    def preberi_iz_datoteke(datoteka):
+        with open(datoteka) as dat:
+            slovar = json.load(dat)
+            return Stanje.iz_slovarja(slovar)
