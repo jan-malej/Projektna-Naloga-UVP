@@ -281,15 +281,11 @@ class Stanje:
 
 
 a = Predmet('analiza', {'ena': 1})
-b = Predmet('algebra', {'dva': 2})
+b = Predmet('algebra', 2)
 c = Predmet('fizika', )
 
 b.dodaj_rezultat('prvi kolokvij', 100)
 a.dodaj_rezultat('prvi kolokvij', 90)
-print(a.ime)
-print(b.ime)
-
-primer = SolskoLeto('2021')
-print(primer.ime, primer.predmeti)
-primer.dodaj_predmet('algebra')
-print(primer.predmeti)
+a.nastavi_st_kolokvijev(4)
+print(a.ime, a.rezultati, a.opisi_rezultatov(), a.opisi_ocen(), a.stevilo_kolokvijev, a.koliko_potrebujem(6))
+print(b.ime, b.rezultati, b.stevilo_kolokvijev)
