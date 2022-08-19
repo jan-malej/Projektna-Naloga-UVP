@@ -129,26 +129,32 @@ class Predmet:
 class SolskoLeto:
     def __init__(self, ime):
         self.ime = ime
-        self.predmeti = {}
+        self.predmeti = []
 
-    def dodaj_predmet(self, ime):
-        if ime in self.predmeti.keys():
+    def imena_predmetov(self):
+        out = []
+        for predmet in self.predmeti:
+            out.append(predmet.ime)
+        return out
+        
+    def dodaj_predmet(self, predmet): #dodamo cel objekt razreda Predmet
+        if predmet.ime in self.imena_predmetov():
             return "Dva predmeta ne moreta imeti enakih imen. To ime je že uporabljeno."
-        predmet = Predmet(ime)
-        self.predmeti[ime] = predmet
+        self.predmeti.append(predmet)
 
-    def odstrani_predmet(self, ime):
-        if ime in self.predmeti.keys():
-            del self.predmeti[ime]
-        return "Tega predmeta ni v redovalnici."
+    def odstrani_predmet(self, predmet): #sprejme objekt razreda Predmet in ga odstrani
+        if predmet.ime in self.imena_predmetov():
+            self.predmeti.remove(predmet)
+        else:    
+            return "Tega predmeta ni v redovalnici."
 
     def povprecje(self):
         if len(self.predmeti) == 0:
             return "Najprej je potrebno vpisati vsaj en predmet."
         vsota = 0
         stevec = 0
-        for predmet in self.predmeti.values():
-            for oc in predmet.seznam_ocen():
+        for predmet in self.predmeti: #imamo list objektov razreda Predmet
+            for oc in predmet.seznam_ocen(): #vsak objekt razreda Predmet ima metodo seznam ocen
                 vsota += oc
                 stevec += 1
         if stevec == 0:
@@ -158,15 +164,13 @@ class SolskoLeto:
     def v_slovar(self):
         return {
             'ime': self.ime,
-            'predmeti': [predmet.v_slovar() for predmet in self.predmeti.values()]
+            'predmeti': self.predmeti
         }
 
     @staticmethod
     def iz_slovarja(slovar):
         leto = SolskoLeto(slovar['ime'])
-        sez = [Predmet.iz_slovarja(predmet) for predmet in slovar['predmeti']]
-        for pr in sez:
-            leto.predmeti[pr.ime] = pr
+        leto.predmeti = slovar['predmeti']
         return leto
 
 class Stanje:
