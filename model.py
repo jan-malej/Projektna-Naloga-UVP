@@ -92,6 +92,22 @@ class Predmet:
             return f"Oceno {ocena} imate že zagotovljeno."
         return f"Za {ocena} v povprečju potrebujete {out} odstotkov na vsak preostali kolokvij."
 
+    def v_slovar(self):
+        return {
+            'ime': self.ime,
+            'rezultati': self.rezultati,
+            'stevilo_kolokvijev': self.stevilo_kolokvijev,
+            'ocene': self.ocene,
+            'stevilo_ocen': self.stevilo_ocen
+        }
+
+    @staticmethod
+    def iz_slovarja(slovar):
+        return Predmet(slovar['ime'],
+        slovar['rezultati'],
+        slovar['stevilo_kolokvijev'],
+        slovar['ocene'],
+        slovar['stevilo_ocen'])
 
 class SolskoLeto:
     def __init__(self, ime):
@@ -121,6 +137,20 @@ class SolskoLeto:
         if stevec == 0:
             return "Najprej je potrebno vpisati kakšno oceno."
         return round(vsota / stevec, 2)
+
+    def v_slovar(self):
+        return {
+            'ime': self.ime,
+            'predmeti': [predmet.v_slovar() for predmet in self.predmeti.values()]
+        }
+
+    @staticmethod
+    def iz_slovarja(slovar):
+        leto = SolskoLeto(slovar['ime'])
+        sez = [Predmet.iz_slovarja(predmet) for predmet in slovar['predmeti']]
+        for pr in sez:
+            leto.predmeti[pr.ime] = pr
+        return leto
 
 class Stanje:
     def __init__(self):
