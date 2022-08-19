@@ -92,6 +92,22 @@ class Predmet:
             return f"Oceno {ocena} imate že zagotovljeno."
         return f"Za {ocena} v povprečju potrebujete {out} odstotkov na vsak preostali kolokvij."
 
+    def v_slovar(self):
+        return {
+            'ime': self.ime,
+            'rezultati': self.rezultati,
+            'stevilo_kolokvijev': self.stevilo_kolokvijev,
+            'ocene': self.ocene,
+            'stevilo_ocen': self.stevilo_ocen
+        }
+
+    @staticmethod
+    def iz_slovarja(slovar):
+        return Predmet(slovar['ime'],
+        slovar['rezultati'],
+        slovar['stevilo_kolokvijev'],
+        slovar['ocene'],
+        slovar['stevilo_ocen'])
 
 class SolskoLeto:
     def __init__(self, ime):
@@ -121,6 +137,20 @@ class SolskoLeto:
         if stevec == 0:
             return "Najprej je potrebno vpisati kakšno oceno."
         return round(vsota / stevec, 2)
+
+    def v_slovar(self):
+        return {
+            'ime': self.ime,
+            'predmeti': [predmet.v_slovar() for predmet in self.predmeti.values()]
+        }
+
+    @staticmethod
+    def iz_slovarja(slovar):
+        leto = SolskoLeto(slovar['ime'])
+        sez = [Predmet.iz_slovarja(predmet) for predmet in slovar['predmeti']]
+        for pr in sez:
+            leto.predmeti[pr.ime] = pr
+        return leto
 
 class Stanje:
     def __init__(self):
@@ -180,3 +210,25 @@ class Stanje:
             self.aktualno_solsko_leto.predmeti[ime_predmeta].nastavi_st_ocen(n) 
         else:
             return "Tega predmeta ni v tem šolskem letu."
+
+    def v_slovar(self):
+        return {
+            'solska_leta': [leto.v_slovar() for leto in self.solska_leta]
+        }
+
+    @staticmethod
+    def iz_slovarja(slovar):
+        out = Stanje()
+        out.solska_leta = [SolskoLeto.iz_slovarja(sl) for sl in slovar['solska_leta']]
+        return out
+
+    def zapisi_v_datoteko(self, datoteka):
+        with open(datoteka, 'w') as dat:
+            slovar = self.v_slovar()
+            json.dump(slovar, dat)
+
+    @staticmethod
+    def preberi_iz_datoteke(datoteka):
+        with open(datoteka) as dat:
+            slovar = json.load(dat)
+            return Stanje.iz_slovarja(slovar)
