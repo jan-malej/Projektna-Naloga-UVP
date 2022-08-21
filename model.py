@@ -8,6 +8,9 @@ class Predmet:
         self.ocene = []
         self.stevilo_ocen = numerus
 
+    def __repr__(self):
+        return f"Predmet({self.ime}, {self.stevilo_kolokvijev}, {self.stevilo_ocen})"
+
     def nastavi_st_kolokvijev(self, n):
         self.stevilo_kolokvijev = n
 
@@ -132,6 +135,9 @@ class SolskoLeto:
         self.ime = ime
         self.predmeti = []
 
+    def __repr__(self):
+        return f"SolskoLeto({self.ime}, {self.predmeti})"
+
     def imena_predmetov(self):
         out = []
         for predmet in self.predmeti:
@@ -178,6 +184,9 @@ class Stanje:
     def __init__(self):
         self.solska_leta = []
         self.aktualno_solsko_leto = None
+
+    def __repr__(self):
+        return f"Stanje({self.solska_leta})"    
 
     def imena_solskih_let(self):
         out = []
