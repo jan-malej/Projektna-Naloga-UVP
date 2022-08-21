@@ -281,7 +281,7 @@ class Stanje:
     def zapisi_v_datoteko(self, datoteka):
         with open(datoteka, 'w') as dat:
             slovar = self.v_slovar()
-            json.dump(slovar, dat)
+            json.dump(slovar, dat, ensure_ascii=False, indent=4)
 
     @staticmethod
     def preberi_iz_datoteke(datoteka):
@@ -313,6 +313,8 @@ aa = Stanje()
 aa.dodaj_solsko_leto('2022')
 aa.dodaj_predmet('mat', 2, 2)
 aa.zapisi_v_datoteko('stanje.json')
+aa.nastavi_st_kolokvijev('mat', 4)
+print(aa.nastavi_st_ocen('met', 4))
 
 print(aa.v_slovar())
 print(aa.preberi_iz_datoteke('stanje.json'))
