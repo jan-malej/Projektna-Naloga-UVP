@@ -127,3 +127,6 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+#tekstovni vmesnik je bil odvec
+tekstovni_vmesnik.py
