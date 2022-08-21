@@ -165,7 +165,7 @@ class SolskoLeto:
     def v_slovar(self):
         return {
             'ime': self.ime,
-            'predmeti': self.predmeti
+            'predmeti': [predmet.v_slovar() for predmet in self.predmeti]
         }
 
     @staticmethod
@@ -185,8 +185,8 @@ class Stanje:
             out.append(s_leto.ime)
 
     def dodaj_solsko_leto(self, ime): # mogoče bo treba metodo spremeniti da sprejme direktno objekt razreda solsko leto
-        if ime in self.imena_solskih_let():
-            return "Dve šolski leti ne smeta imeti enakih imen. To ime je že uporabljeno." 
+        #if ime in self.imena_solskih_let():
+        #    return "Dve šolski leti ne smeta imeti enakih imen. To ime je že uporabljeno." 
         leto = SolskoLeto(ime)
         self.solska_leta.append(leto)
         if not self.aktualno_solsko_leto:
@@ -300,3 +300,10 @@ leto.odstrani_predmet(b)
 print(leto.imena_predmetov())
 print(leto.povprecje())
 print(leto.predmeti)
+aa = Stanje()
+aa.dodaj_solsko_leto('2022')
+aa.dodaj_predmet('mat', 2, 2)
+aa.zapisi_v_datoteko('stanje.json')
+
+print(aa.v_slovar())
+print(aa.preberi_iz_datoteke('stanje.json'))
