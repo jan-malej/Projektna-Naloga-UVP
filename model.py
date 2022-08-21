@@ -312,9 +312,13 @@ print(leto.predmeti)
 aa = Stanje()
 aa.dodaj_solsko_leto('2022')
 aa.dodaj_predmet('mat', 2, 2)
-aa.zapisi_v_datoteko('stanje.json')
+
 aa.nastavi_st_kolokvijev('mat', 4)
-print(aa.nastavi_st_ocen('met', 4))
+aa.dodaj_solsko_leto(leto.ime)
+aa.aktualno_solsko_leto.predmeti = leto.predmeti
+print(aa.solska_leta)
+
 
 print(aa.v_slovar())
+aa.zapisi_v_datoteko('stanje.json')
 print(aa.preberi_iz_datoteke('stanje.json'))
