@@ -102,11 +102,12 @@ class Predmet:
         minimum = (ocena - 1) * 10
         potrebna_vsota = minimum * self.stevilo_kolokvijev
         out = (potrebna_vsota - self.trenutna_vsota_rezultatov()) / (self.stevilo_kolokvijev - len(self.seznam_rezultatov()))
+        zaokrozeno = round(out, 2)
         if out > 100:
-            return f"Za {ocena} v povprečju potrebujete {out} odstotkov na vsak preostali kolokvij. Težka bo."
+            return f"Za {ocena} v povprečju potrebujete {zaokrozeno} odstotkov na vsak preostali kolokvij. Težka bo."
         elif out <= 0:
             return f"Oceno {ocena} imate že zagotovljeno."
-        return f"Za {ocena} v povprečju potrebujete {out} odstotkov na vsak preostali kolokvij."
+        return f"Za {ocena} v povprečju potrebujete {zaokrozeno} odstotkov na vsak preostali kolokvij."
 
     def v_slovar(self):
         return {
