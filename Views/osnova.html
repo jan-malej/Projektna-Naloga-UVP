@@ -12,11 +12,17 @@
     % end
 </ul>
 
+<h2>Vpis novega šolskega leta</h2>
+<p>Pozor! Vpisati je potrebno še neuporabljeno ime.</p>
+<p>Vpis potrdite s pritiskom na gumb.</p>
 <form action='/dodaj_solsko_leto/' method="POST">
     Ime šolskega leta: <input type="text" name="Ime">
     <input type="submit" value="Dodaj šolsko leto!">
 </form>
 
+<h2>Izbris šolskega leta</h2>
+<p>Na spustnem seznamu izberite šolsko leto, ki bi ga radi izbrisali.</p>
+<p>Izbris potrdite s pritiskom na gumb.</p>
 <form action='/izbrisi_solsko_leto/' method="POST">
     Ime šolskega leta: 
     <select name="Ime">
