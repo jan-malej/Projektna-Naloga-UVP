@@ -24,4 +24,9 @@ def izbrisi_solsko_leto():
     shrani()
     bottle.redirect('/')
 
+@bottle.get('/solsko_leto/<index:int>')
+def solsko_leto(index):
+    leto = stanje.solska_leta[index]
+    return bottle.template('solsko_leto.html', leto = leto)
+
 bottle.run(debug=True, reloader=True)
