@@ -8,7 +8,12 @@
 <h1>Vaša šolska leta</h1>
 <ul>
     % for leto in leta:
-    <li>{{leto.ime}} - Trenutno povprečje: {{leto.povprecje()}}</li>
+    <li>
+        {{leto.ime}} - Trenutno povprečje: {{leto.povprecje()}}
+        <form action='/solsko_leto/' method="POST">
+            <button type="submit">Uredi to šolsko leto!</button>
+        </form>
+    </li>
     % end
 </ul>
 
