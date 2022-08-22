@@ -194,22 +194,23 @@ class Stanje:
         out = []
         for s_leto in self.solska_leta:
             out.append(s_leto.ime)
+        return out
 
     def dodaj_solsko_leto(self, ime): # mogoče bo treba metodo spremeniti da sprejme direktno objekt razreda solsko leto
-        #if ime in self.imena_solskih_let():
-        #    return "Dve šolski leti ne smeta imeti enakih imen. To ime je že uporabljeno." 
+        if ime in self.imena_solskih_let():
+            return "Dve šolski leti ne smeta imeti enakih imen. To ime je že uporabljeno." 
         leto = SolskoLeto(ime)
         self.solska_leta.append(leto)
         if not self.aktualno_solsko_leto:
             self.aktualno_solsko_leto = leto
 
     def izbrisi_solsko_leto(self, ime):
-        #if ime in self.imena_solskih_let():
+        if ime in self.imena_solskih_let():
             for s_leto in self.solska_leta:
                 if s_leto.ime == ime:
                     self.solska_leta.remove(s_leto)
-        #else:
-            #return "Tega šolskega leta ni v redovalnici"
+        else:
+            return "Tega šolskega leta ni v redovalnici"
 
     def nastavi_aktualno(self, s_leto):
         self.aktualno_solsko_leto = s_leto

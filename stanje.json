@@ -1,39 +1,15 @@
 {
     "solska_leta": [
         {
-            "ime": "2022",
-            "predmeti": [
-                {
-                    "ime": "analiza",
-                    "rezultati": [
-                        [
-                            "prvi kolokvij",
-                            90
-                        ]
-                    ],
-                    "stevilo_kolokvijev": 4,
-                    "ocene": [],
-                    "stevilo_ocen": 2
-                },
-                {
-                    "ime": "fizika",
-                    "rezultati": [],
-                    "stevilo_kolokvijev": 2,
-                    "ocene": [],
-                    "stevilo_ocen": 2
-                }
-            ]
-        },
-        {
             "ime": "2021/22",
             "predmeti": []
         },
         {
-            "ime": "2023",
+            "ime": "2024",
             "predmeti": []
         },
         {
-            "ime": "2024",
+            "ime": "2022",
             "predmeti": []
         }
     ]

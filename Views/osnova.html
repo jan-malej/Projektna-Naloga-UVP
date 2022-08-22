@@ -7,8 +7,8 @@
 
 <h1>Vaša šolska leta</h1>
 <ul>
-    % for leto in imena:
-    <li>{{leto.ime}}</li>
+    % for leto in leta:
+    <li>{{leto.ime}} - Trenutno povprečje: {{leto.povprecje()}}</li>
     % end
 </ul>
 
