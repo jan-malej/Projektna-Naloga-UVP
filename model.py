@@ -177,7 +177,9 @@ class SolskoLeto:
     @staticmethod
     def iz_slovarja(slovar):
         leto = SolskoLeto(slovar['ime'])
-        leto.predmeti = slovar['predmeti']
+        leto.predmeti = [Predmet.iz_slovarja(pr) for pr in slovar['predmeti']]
+            
+    
         return leto
 
 class Stanje:
