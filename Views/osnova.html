@@ -13,11 +13,15 @@
 </ul>
 
 <form action='/dodaj_solsko_leto/' method="POST">
-    ime: <input type="text" name="Ime">
+    Ime šolskega leta: <input type="text" name="Ime">
     <input type="submit" value="Dodaj šolsko leto!">
-  </form>
+</form>
 
-  <form action='/izbrisi_solsko_leto/' method="POST">
-    ime: <input type="text" name="Ime">
+<form action='/izbrisi_solsko_leto/' method="POST">
+    Ime šolskega leta: 
+    <select name="Ime">
+        % for leto in leta:
+        <option>{{leto.ime}}</option>
+        % end
     <input type="submit" value="Izbriši šolsko leto!">
-  </form>
+</form>
