@@ -3,4 +3,21 @@
 <h1>Dobrodošli v redovalnici!</h1>
 
 <p>Izberite šolsko leto, ki bi ga radi urejali.</p>
-<p>Lahko pa tudi dodate novo šolsko leto.</p>
+<p>Lahko pa tudi dodate novo šolsko leto ali izbrišete katerega od obstoječih.</p>
+
+<h1>Vaša šolska leta</h1>
+<ul>
+    % for leto in imena:
+    <li>{{leto.ime}}</li>
+    % end
+</ul>
+
+<form action='/dodaj_solsko_leto/' method="POST">
+    ime: <input type="text" name="Ime">
+    <input type="submit" value="Dodaj šolsko leto!">
+  </form>
+
+  <form action='/izbrisi_solsko_leto/' method="POST">
+    ime: <input type="text" name="Ime">
+    <input type="submit" value="Izbriši šolsko leto!">
+  </form>
