@@ -4,6 +4,23 @@ IME_DATOTEKE_S_STANJEM = 'stanje.json'
 STEVKE = '0123456789'
 stanje = model.Stanje.preberi_iz_datoteke(IME_DATOTEKE_S_STANJEM)
 
+def preveri_vnos(vnos):
+    """Preveri, če je vnos prazen niz in če je celo število."""
+    if vnos == '':
+        return False
+    for znak in vnos:
+        if znak not in STEVKE:
+            return False   
+        elif znak[0] == '0':
+            return False
+    return True
+
+def je_neprazen_seznam(sez):
+    """Preveri ali je seznam neprazen."""
+    if sez == []:
+        return False
+    return True
+
 def shrani():
     stanje.zapisi_v_datoteko(IME_DATOTEKE_S_STANJEM)
 
@@ -20,7 +37,7 @@ def dodaj_solsko_leto():
 
 @bottle.post('/izbrisi_solsko_leto/')
 def izbrisi_solsko_leto():
-    if stanje.solska_leta == []:
+    if not je_neprazen_seznam(stanje.solska_leta):
         bottle.redirect('/')
     ime = bottle.request.forms['Ime']
     stanje.izbrisi_solsko_leto(ime)
@@ -43,13 +60,8 @@ def dodaj_predmet(index):
     stanje.nastavi_aktualno(aktualno)
     ime = bottle.request.forms['ime']
     st = bottle.request.forms['st']
-    if st == '':
+    if not preveri_vnos(st):
         bottle.redirect(f'/solsko_leto/{index}/')
-    for znak in st:
-        if znak not in STEVKE:
-            bottle.redirect(f'/solsko_leto/{index}/')   
-        elif znak[0] == '0':
-            bottle.redirect(f'/solsko_leto/{index}/')
     stanje.dodaj_predmet(ime, int(st))
     shrani()
     bottle.redirect(f'/solsko_leto/{index}/')
@@ -58,7 +70,7 @@ def dodaj_predmet(index):
 def izbrisi_predmet(index):
     aktualno = stanje.solska_leta[index]
     stanje.nastavi_aktualno(aktualno)
-    if aktualno.predmeti == []:
+    if not je_neprazen_seznam(aktualno.predmeti):
         bottle.redirect(f'/solsko_leto/{index}/')
     ime = bottle.request.forms['ime']
     stanje.odstrani_predmet(ime)
