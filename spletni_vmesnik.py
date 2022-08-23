@@ -26,8 +26,10 @@ def izbrisi_solsko_leto():
 
 @bottle.get('/solsko_leto/<index:int>/')
 def solsko_leto(index):
+    aktualno = stanje.solska_leta[index]
+    stanje.nastavi_aktualno(aktualno)
     return bottle.template(
         'solsko_leto.html',
-         leto=stanje.solska_leta[index])
+        leto=aktualno)
 
 bottle.run(debug=True, reloader=True)

@@ -1,21 +1,17 @@
 import json
 
 class Predmet:
-    def __init__(self, ime, st=2, numerus=2):
+    def __init__(self, ime, st=2):
         self.ime = ime
         self.rezultati = []
         self.stevilo_kolokvijev = st
         self.ocene = []
-        self.stevilo_ocen = numerus
 
     def __repr__(self):
-        return f"Predmet({self.ime}, {self.stevilo_kolokvijev}, {self.stevilo_ocen})"
+        return f"Predmet({self.ime}, {self.stevilo_kolokvijev})"
 
     def nastavi_st_kolokvijev(self, n):
         self.stevilo_kolokvijev = n
-
-    def nastavi_st_ocen(self, n):
-        self.stevilo_ocen = n
     
     def opisi_rezultatov(self):
         out = []
@@ -118,14 +114,12 @@ class Predmet:
             'rezultati': self.rezultati,
             'stevilo_kolokvijev': self.stevilo_kolokvijev,
             'ocene': self.ocene,
-            'stevilo_ocen': self.stevilo_ocen
         }
 
     @staticmethod
     def iz_slovarja(slovar):
         out = Predmet(slovar['ime'],
-        slovar['stevilo_kolokvijev'],
-        slovar['stevilo_ocen'])
+        slovar['stevilo_kolokvijev'])
         out.rezultati = slovar['rezultati']
         out.ocene = slovar['ocene']
         return out
@@ -212,8 +206,8 @@ class Stanje:
     def nastavi_aktualno(self, s_leto):
         self.aktualno_solsko_leto = s_leto
 
-    def dodaj_predmet(self, ime, st_kolokvijev=2, st_ocen=2):
-        predmet = Predmet(ime, st_kolokvijev, st_ocen)
+    def dodaj_predmet(self, ime, st_kolokvijev=2):
+        predmet = Predmet(ime, st_kolokvijev)
         self.aktualno_solsko_leto.dodaj_predmet(predmet)
 
     def odstrani_predmet(self, predmet):
@@ -256,14 +250,6 @@ class Stanje:
             for pr in self.aktualno_solsko_leto.predmeti:
                 if pr.ime == ime_predmeta:
                     pr.nastavi_st_kolokvijev(n) 
-        else:
-            return "Tega predmeta ni v tem šolskem letu."
-
-    def nastavi_st_ocen(self, ime_predmeta, n):
-        if ime_predmeta in self.aktualno_solsko_leto.imena_predmetov():
-            for pr in self.aktualno_solsko_leto.predmeti:
-                if pr.ime == ime_predmeta:
-                    pr.nastavi_st_ocen(n) 
         else:
             return "Tega predmeta ni v tem šolskem letu."
 
