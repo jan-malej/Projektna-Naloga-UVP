@@ -2,7 +2,7 @@ import bottle
 import model
 IME_DATOTEKE_S_STANJEM = 'stanje.json'
 stanje = model.Stanje.preberi_iz_datoteke(IME_DATOTEKE_S_STANJEM)
-print(stanje.imena_solskih_let())
+print(enumerate(stanje.solska_leta))
 def shrani():
     stanje.zapisi_v_datoteko(IME_DATOTEKE_S_STANJEM)
 
@@ -24,9 +24,10 @@ def izbrisi_solsko_leto():
     shrani()
     bottle.redirect('/')
 
-@bottle.get('/solsko_leto/<index:int>')
+@bottle.get('/solsko_leto/<index:int>/')
 def solsko_leto(index):
-    leto = stanje.solska_leta[index]
-    return bottle.template('solsko_leto.html', leto = leto)
+    return bottle.template(
+        'solsko_leto.html',
+         leto=stanje.solska_leta[index])
 
 bottle.run(debug=True, reloader=True)

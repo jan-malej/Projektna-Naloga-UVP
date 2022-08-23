@@ -7,15 +7,10 @@
 
 <h1>Vaša šolska leta</h1>
 <ul>
-    % i = 0
-    % for leto in leta:
+    % for index, leto in enumerate(leta):
     <li>
-        {{leto.ime}} - Trenutno povprečje: {{leto.povprecje()}}
-        <form action='/solsko_leto/{{i}}/' method="GET">
-            <button type="submit">Uredi to šolsko leto!</button>
-        </form>
+        <a href="/solsko_leto/{{ int(index) }}/">{{ leto.ime }}</a> - Trenutno povprečje: {{leto.povprecje()}}
     </li>
-    % i += 1
     % end
 </ul>
 
