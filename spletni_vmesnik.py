@@ -8,9 +8,12 @@ def preveri_vnos(vnos):
     """Preveri, če je vnos prazen niz in če je celo število."""
     if vnos == '':
         return False
+    elif vnos[0] == '0':
+        return False
     for znak in vnos:
         if znak not in STEVKE:
-            return False   
+            return False
+           
     return True
 
 def je_neprazen_seznam(sez):
