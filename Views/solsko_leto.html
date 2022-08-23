@@ -58,3 +58,23 @@
         % end
     <input type="submit" value="Odstrani predmet!">
 </form>
+<form action='/solsko_leto/{{ int(index) }}/izbrisi_oceno/' method="POST">
+    Ime predmeta: 
+    <select name="ime_pr">
+        % for pr in predmeti:
+        <option>{{ pr.ime }}</option>
+        % end
+    </select>
+    Opis: <input type="text" name="opis">
+    <input type="submit" value="Izbriši oceno!">
+</form>
+<form action='/solsko_leto/{{ int(index) }}/odstrani_rezultat/' method="POST">
+    Ime predmeta: 
+    <select name="ime_pr">
+        % for pr in predmeti:
+        <option>{{ pr.ime }}</option>
+        % end
+    </select>
+    Opis: <input type="text" name="opis">
+    <input type="submit" value="Odstrani rezultat!">
+</form>

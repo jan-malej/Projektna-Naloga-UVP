@@ -124,4 +124,31 @@ def dodaj_rezultat(index):
     else:
         bottle.redirect(f'/solsko_leto/{index}/')
 
+@bottle.post('/solsko_leto/<index:int>/izbrisi_oceno/')
+def izbrisi_oceno(index):
+    aktualno = stanje.solska_leta[index]
+    stanje.nastavi_aktualno(aktualno)
+    if not je_neprazen_seznam(aktualno.predmeti):
+        bottle.redirect(f'/solsko_leto/{index}/')
+    ime_pr = bottle.request.forms['ime_pr']
+    opis = bottle.request.forms['opis']
+    if not je_neprazen_niz(opis):
+        bottle.redirect(f'/solsko_leto/{index}/')
+    stanje.izbrisi_oceno(ime_pr, opis)
+    shrani()
+    bottle.redirect(f'/solsko_leto/{index}/')
+
+@bottle.post('/solsko_leto/<index:int>/odstrani_rezultat/')
+def odstrani_rezultat(index):
+    aktualno = stanje.solska_leta[index]
+    stanje.nastavi_aktualno(aktualno)
+    if not je_neprazen_seznam(aktualno.predmeti):
+        bottle.redirect(f'/solsko_leto/{index}/')
+    ime_pr = bottle.request.forms['ime_pr']
+    opis = bottle.request.forms['opis']
+    if not je_neprazen_niz(opis):
+        bottle.redirect(f'/solsko_leto/{index}/')
+    stanje.odstrani_rezultat(ime_pr, opis)
+    shrani()
+    bottle.redirect(f'/solsko_leto/{index}/')
 bottle.run(debug=True, reloader=True)
