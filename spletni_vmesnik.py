@@ -20,6 +20,8 @@ def dodaj_solsko_leto():
 
 @bottle.post('/izbrisi_solsko_leto/')
 def izbrisi_solsko_leto():
+    if stanje.solska_leta == []:
+        bottle.redirect('/')
     ime = bottle.request.forms['Ime']
     stanje.izbrisi_solsko_leto(ime)
     shrani()
@@ -56,6 +58,8 @@ def dodaj_predmet(index):
 def izbrisi_predmet(index):
     aktualno = stanje.solska_leta[index]
     stanje.nastavi_aktualno(aktualno)
+    if aktualno.predmeti == []:
+        bottle.redirect(f'/solsko_leto/{index}/')
     ime = bottle.request.forms['ime']
     stanje.odstrani_predmet(ime)
     shrani()

@@ -7,6 +7,9 @@
 
 <h1>Vaša šolska leta</h1>
 <ul>
+    % if leta == []:
+    <li>Trenutno nimate vpisanega nobenega šolskega leta</li>
+    %end
     % for index, leto in enumerate(leta):
     <li>
         <a href="/solsko_leto/{{ int(index) }}/">{{ leto.ime }}</a> - Trenutno povprečje: {{leto.povprecje()}}
