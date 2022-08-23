@@ -2,7 +2,14 @@
     "solska_leta": [
         {
             "ime": "2021/22",
-            "predmeti": []
+            "predmeti": [
+                {
+                    "ime": "mat",
+                    "rezultati": [],
+                    "stevilo_kolokvijev": 2,
+                    "ocene": []
+                }
+            ]
         },
         {
             "ime": "2022/23",

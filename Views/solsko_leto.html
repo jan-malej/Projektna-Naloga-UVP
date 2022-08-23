@@ -19,6 +19,7 @@
     </li>
 % end
 </ul>
+
 <h2>Dodajanje predmeta, ocene ali rezultata s kolokvija</h2>
 <p>Za dodajanje predmeta v polji vpišite ime predmeta in njegovo število kolokvijev (vnos mora biti naravno število).</p>
 <form action='/solsko_leto/{{ int(index) }}/dodaj_predmet/' method="POST">
@@ -26,6 +27,17 @@
     Število kolokvijev: <input type="text" name="st">
     <input type="submit" value="Dodaj predmet!">
 </form>
+<form action='/solsko_leto/{{ int(index) }}/vpisi_oceno/' method="POST">
+    Ime predmeta: <select name="ime_pr">
+        % for pr in predmeti:
+        <option>{{ pr.ime }}</option>
+        % end
+        </select>
+    Opis: <input type="text" name="opis">
+    Ocena: <input type="text" name="kol">
+    <input type="submit" value="Vpiši oceno!">
+</form>
+
 <h2>Izbris predmeta, ocene ali rezultata s kolokvija</h2>
 <p>Za odstranitev predmeta v spustnem seznamu izberite ime predmeta in izbiro potrdite s pritiskom na gumb.</p>
 <form action='/solsko_leto/{{ int(index) }}/odstrani_predmet/' method="POST">

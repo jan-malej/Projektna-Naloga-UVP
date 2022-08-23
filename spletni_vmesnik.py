@@ -20,6 +20,11 @@ def je_neprazen_seznam(sez):
     if sez == []:
         return False
     return True
+def je_neprazen_niz(niz):
+    """Preveri ali je niz neprazen"""
+    if niz == '':
+        return False
+    return True
 
 def shrani():
     stanje.zapisi_v_datoteko(IME_DATOTEKE_S_STANJEM)
@@ -77,5 +82,20 @@ def izbrisi_predmet(index):
     shrani()
     bottle.redirect(f'/solsko_leto/{index}/')    
 
+@bottle.post('/solsko_leto/<index:int>/vpisi_oceno/')
+def vpisi_oceno(index):
+    aktualno = stanje.solska_leta[index]
+    stanje.nastavi_aktualno(aktualno)
+    if not je_neprazen_seznam(aktualno.predmeti):
+        bottle.redirect(f'/solsko_leto/{index}/')
+    ime_pr = bottle.request.forms['ime_pr']
+    opis = bottle.request.forms['opis']
+    kol = bottle.request.forms['kol']
+    if je_neprazen_niz(opis) and preveri_vnos(kol):
+        stanje.vpisi_oceno(ime_pr, opis, int(kol))
+        shrani()
+        bottle.redirect(f'/solsko_leto/{index}/')
+    else:
+        bottle.redirect(f'/solsko_leto/{index}/')
 
 bottle.run(debug=True, reloader=True)
