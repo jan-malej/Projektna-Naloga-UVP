@@ -2,50 +2,27 @@
     "solska_leta": [
         {
             "ime": "2021/22",
-            "predmeti": []
-        },
-        {
-            "ime": "2022/23",
-            "predmeti": [
-                {
-                    "ime": "abc",
-                    "rezultati": [],
-                    "stevilo_kolokvijev": 4,
-                    "ocene": []
-                }
-            ]
-        },
-        {
-            "ime": "2023/24",
             "predmeti": [
                 {
                     "ime": "mat",
                     "rezultati": [],
-                    "stevilo_kolokvijev": 2,
+                    "stevilo_kolokvijev": 3,
                     "ocene": [
-                        [
-                            "prvi test",
-                            8
-                        ],
                         [
                             "pisno",
                             9
                         ]
                     ]
-                },
-                {
-                    "ime": "ana",
-                    "rezultati": [],
-                    "stevilo_kolokvijev": 2,
-                    "ocene": []
-                },
-                {
-                    "ime": "alg",
-                    "rezultati": [],
-                    "stevilo_kolokvijev": 4,
-                    "ocene": []
                 }
             ]
+        },
+        {
+            "ime": "2022/23",
+            "predmeti": []
+        },
+        {
+            "ime": "2023/24",
+            "predmeti": []
         }
     ]
 }

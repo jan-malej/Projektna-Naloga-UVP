@@ -4,17 +4,24 @@ IME_DATOTEKE_S_STANJEM = 'stanje.json'
 STEVKE = '0123456789'
 stanje = model.Stanje.preberi_iz_datoteke(IME_DATOTEKE_S_STANJEM)
 
-def preveri_vnos(vnos):
-    """Preveri, če je vnos prazen niz in če je celo število."""
-    if vnos == '':
-        return False
-    elif vnos[0] == '0':
-        return False
-    for znak in vnos:
-        if znak not in STEVKE:
-            return False
-           
-    return True
+def preveri_int(vnos):
+    """Preveri, če se vnos pretvori v int, ki je večji od 0"""
+    try:
+        ok = int(vnos)
+        out = isinstance(ok, int)
+    except ValueError:
+        out = False
+        return out
+    return ok > 0
+
+def preveri_float(niz):
+    """Preveri, če se niz pretvori v float"""
+    try:
+        ok = float(niz)
+        out = isinstance(ok, float)
+    except ValueError:
+        out = False
+    return out
 
 def je_neprazen_seznam(sez):
     """Preveri ali je seznam neprazen."""
@@ -69,7 +76,7 @@ def dodaj_predmet(index):
     stanje.nastavi_aktualno(aktualno)
     ime = bottle.request.forms['ime']
     st = bottle.request.forms['st']
-    if not preveri_vnos(st):
+    if not preveri_int(st):
         bottle.redirect(f'/solsko_leto/{index}/')
     stanje.dodaj_predmet(ime, int(st))
     shrani()
@@ -95,7 +102,7 @@ def vpisi_oceno(index):
     ime_pr = bottle.request.forms['ime_pr']
     opis = bottle.request.forms['opis']
     kol = bottle.request.forms['kol']
-    if je_neprazen_niz(opis) and preveri_vnos(kol):
+    if je_neprazen_niz(opis) and preveri_int(kol):
         stanje.vpisi_oceno(ime_pr, opis, int(kol))
         shrani()
         bottle.redirect(f'/solsko_leto/{index}/')
