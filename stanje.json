@@ -4,21 +4,21 @@
             "ime": "2021/22",
             "predmeti": [
                 {
-                    "ime": "abc",
+                    "ime": "mat",
                     "rezultati": [],
                     "stevilo_kolokvijev": 2,
                     "ocene": []
                 },
                 {
-                    "ime": "g",
+                    "ime": "ana",
                     "rezultati": [],
-                    "stevilo_kolokvijev": 2,
+                    "stevilo_kolokvijev": 4,
                     "ocene": []
                 },
                 {
-                    "ime": "a",
+                    "ime": "alg",
                     "rezultati": [],
-                    "stevilo_kolokvijev": 2,
+                    "stevilo_kolokvijev": 4,
                     "ocene": []
                 }
             ]
@@ -29,7 +29,13 @@
                 {
                     "ime": "mat",
                     "rezultati": [],
-                    "stevilo_kolokvijev": 4,
+                    "stevilo_kolokvijev": 2,
+                    "ocene": []
+                },
+                {
+                    "ime": "ana",
+                    "rezultati": [],
+                    "stevilo_kolokvijev": 3,
                     "ocene": []
                 }
             ]
