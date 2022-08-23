@@ -3,6 +3,7 @@ import model
 IME_DATOTEKE_S_STANJEM = 'stanje.json'
 STEVKE = '0123456789'
 stanje = model.Stanje.preberi_iz_datoteke(IME_DATOTEKE_S_STANJEM)
+
 def shrani():
     stanje.zapisi_v_datoteko(IME_DATOTEKE_S_STANJEM)
 
@@ -50,6 +51,15 @@ def dodaj_predmet(index):
     stanje.dodaj_predmet(ime, int(st))
     shrani()
     bottle.redirect(f'/solsko_leto/{index}/')
+
+@bottle.post('/solsko_leto/<index:int>/odstrani_predmet/')
+def izbrisi_predmet(index):
+    aktualno = stanje.solska_leta[index]
+    stanje.nastavi_aktualno(aktualno)
+    ime = bottle.request.forms['ime']
+    stanje.odstrani_predmet(ime)
+    shrani()
+    bottle.redirect(f'/solsko_leto/{index}/')    
 
 
 bottle.run(debug=True, reloader=True)

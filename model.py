@@ -210,8 +210,10 @@ class Stanje:
         predmet = Predmet(ime, st_kolokvijev)
         self.aktualno_solsko_leto.dodaj_predmet(predmet)
 
-    def odstrani_predmet(self, predmet):
-        self.aktualno_solsko_leto.odstrani_predmet(predmet)
+    def odstrani_predmet(self, ime):
+        for pr in self.aktualno_solsko_leto.predmeti:
+            if pr.ime == ime:
+                self.aktualno_solsko_leto.odstrani_predmet(pr)
 
     def vpisi_oceno(self, ime_predmeta, opis, kolicina):
         if ime_predmeta in self.aktualno_solsko_leto.imena_predmetov():

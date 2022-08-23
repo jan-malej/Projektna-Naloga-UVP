@@ -9,6 +9,7 @@
     </ul>
 </p>
 <h2>Vaši predmeti, rezultati s kolokvijev in ocene</h2>
+<p>Za dodajanje predmeta v polji vpišite ime predmeta in njegovo število kolokvijev (vnos mora biti naravno število).</p>
 <ul>
 % for pr in predmeti:
     <li>
@@ -20,4 +21,12 @@
     Ime predmeta: <input type="text" name="ime">
     Število kolokvijev: <input type="text" name="st">
     <input type="submit" value="Dodaj predmet!">
+</form>
+<form action='/solsko_leto/{{ int(index) }}/odstrani_predmet/' method="POST">
+    Ime predmeta: 
+    <select name="ime">
+        % for pr in predmeti:
+        <option>{{ pr.ime }}</option>
+        % end
+    <input type="submit" value="Odstrani predmet!">
 </form>
