@@ -1,7 +1,6 @@
 import bottle
 import model
 IME_DATOTEKE_S_STANJEM = 'stanje.json'
-STEVKE = '0123456789'
 stanje = model.Stanje.preberi_iz_datoteke(IME_DATOTEKE_S_STANJEM)
 
 def preveri_int(vnos):
@@ -104,6 +103,22 @@ def vpisi_oceno(index):
     kol = bottle.request.forms['kol']
     if je_neprazen_niz(opis) and preveri_int(kol):
         stanje.vpisi_oceno(ime_pr, opis, int(kol))
+        shrani()
+        bottle.redirect(f'/solsko_leto/{index}/')
+    else:
+        bottle.redirect(f'/solsko_leto/{index}/')
+
+@bottle.post('/solsko_leto/<index:int>/dodaj_rezultat/')
+def dodaj_rezultat(index):
+    aktualno = stanje.solska_leta[index]
+    stanje.nastavi_aktualno(aktualno)
+    if not je_neprazen_seznam(aktualno.predmeti):
+        bottle.redirect(f'/solsko_leto/{index}/')
+    ime_pr = bottle.request.forms['ime_pr']
+    opis = bottle.request.forms['opis']
+    kol = bottle.request.forms['kol']
+    if je_neprazen_niz(opis) and preveri_float(kol):
+        stanje.dodaj_rezultat(ime_pr, opis, float(kol))
         shrani()
         bottle.redirect(f'/solsko_leto/{index}/')
     else:

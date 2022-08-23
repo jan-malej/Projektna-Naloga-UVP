@@ -37,7 +37,16 @@
     Ocena: <input type="text" name="kol">
     <input type="submit" value="Vpiši oceno!">
 </form>
-
+<form action='/solsko_leto/{{ int(index) }}/dodaj_rezultat/' method="POST">
+    Ime predmeta: <select name="ime_pr">
+        % for pr in predmeti:
+        <option>{{ pr.ime }}</option>
+        % end
+        </select>
+    Opis: <input type="text" name="opis">
+    Rezultat na kolokviju: <input type="text" name="kol">
+    <input type="submit" value="Dodaj rezultat!">
+</form>
 
 <h2>Izbris predmeta, ocene ali rezultata s kolokvija</h2>
 <p>Za odstranitev predmeta v spustnem seznamu izberite ime predmeta in izbiro potrdite s pritiskom na gumb.</p>
