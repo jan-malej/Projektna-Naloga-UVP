@@ -11,8 +11,6 @@ def preveri_vnos(vnos):
     for znak in vnos:
         if znak not in STEVKE:
             return False   
-        elif znak[0] == '0':
-            return False
     return True
 
 def je_neprazen_seznam(sez):
@@ -36,9 +34,12 @@ def osnovna_stran():
 @bottle.post('/dodaj_solsko_leto/')
 def dodaj_solsko_leto():
     ime = bottle.request.forms['Ime']
-    stanje.dodaj_solsko_leto(ime)
-    shrani()
-    bottle.redirect('/')
+    if je_neprazen_niz(ime):
+        stanje.dodaj_solsko_leto(ime)
+        shrani()
+        bottle.redirect('/')
+    else:
+        bottle.redirect('/')
 
 @bottle.post('/izbrisi_solsko_leto/')
 def izbrisi_solsko_leto():
