@@ -9,3 +9,15 @@
     </ul>
 </p>
 <h2>Vaši predmeti, rezultati s kolokvijev in ocene</h2>
+<ul>
+% for pr in predmeti:
+    <li>
+        {{ pr.ime }}
+    </li>
+% end
+</ul>
+<form action='/solsko_leto/{{ int(index) }}/dodaj_predmet/' method="POST">
+    Ime predmeta: <input type="text" name="ime">
+    Število kolokvijev: <input type="text" name="st">
+    <input type="submit" value="Dodaj predmet!">
+</form>

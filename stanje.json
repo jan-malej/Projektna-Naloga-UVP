@@ -2,11 +2,43 @@
     "solska_leta": [
         {
             "ime": "2021/22",
-            "predmeti": []
+            "predmeti": [
+                {
+                    "ime": "abc",
+                    "rezultati": [],
+                    "stevilo_kolokvijev": 2,
+                    "ocene": []
+                },
+                {
+                    "ime": "g",
+                    "rezultati": [],
+                    "stevilo_kolokvijev": 2,
+                    "ocene": []
+                },
+                {
+                    "ime": "",
+                    "rezultati": [],
+                    "stevilo_kolokvijev": 5,
+                    "ocene": []
+                },
+                {
+                    "ime": "a",
+                    "rezultati": [],
+                    "stevilo_kolokvijev": 2,
+                    "ocene": []
+                }
+            ]
         },
         {
             "ime": "2022/23",
-            "predmeti": []
+            "predmeti": [
+                {
+                    "ime": "mat",
+                    "rezultati": [],
+                    "stevilo_kolokvijev": 4,
+                    "ocene": []
+                }
+            ]
         },
         {
             "ime": "2023/24",

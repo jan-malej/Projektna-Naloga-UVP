@@ -1,8 +1,8 @@
 import bottle
 import model
 IME_DATOTEKE_S_STANJEM = 'stanje.json'
+STEVKE = '0123456789'
 stanje = model.Stanje.preberi_iz_datoteke(IME_DATOTEKE_S_STANJEM)
-print(enumerate(stanje.solska_leta))
 def shrani():
     stanje.zapisi_v_datoteko(IME_DATOTEKE_S_STANJEM)
 
@@ -30,6 +30,26 @@ def solsko_leto(index):
     stanje.nastavi_aktualno(aktualno)
     return bottle.template(
         'solsko_leto.html',
-        leto=aktualno)
+        leto=aktualno,
+        predmeti=aktualno.predmeti,
+        index=index)
+
+@bottle.post('/solsko_leto/<index:int>/dodaj_predmet/')
+def dodaj_predmet(index):
+    aktualno = stanje.solska_leta[index]
+    stanje.nastavi_aktualno(aktualno)
+    ime = bottle.request.forms['ime']
+    st = bottle.request.forms['st']
+    if st == '':
+        bottle.redirect(f'/solsko_leto/{index}/')
+    for znak in st:
+        if znak not in STEVKE:
+            bottle.redirect(f'/solsko_leto/{index}/')   
+        elif znak[0] == '0':
+            bottle.redirect(f'/solsko_leto/{index}/')
+    stanje.dodaj_predmet(ime, int(st))
+    shrani()
+    bottle.redirect(f'/solsko_leto/{index}/')
+
 
 bottle.run(debug=True, reloader=True)
