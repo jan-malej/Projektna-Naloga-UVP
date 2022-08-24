@@ -105,6 +105,19 @@
     <input type="submit" value="Dodaj rezultat!">
 </form>
 
+<h2>Nastavitev števila kolokvijev</h2>
+<p>Izberite predmet in vpišite novo število kolokvijev.</p>
+<form action='/solsko_leto/{{ int(index) }}/nastavi_kolokvije/' method="POST">
+    Ime predmeta: 
+    <select name="ime_pr">
+        % for pr in predmeti:
+        <option>{{ pr.ime }}</option>
+        % end
+    </select>
+    Število kolokvijev: <input type="text" name="st">
+    <input type="submit" value="Nastavi!">
+</form>
+
 <h2>Izbris predmeta, ocene ali rezultata s kolokvija</h2>
 <p>Za odstranitev predmeta v spustnem seznamu izberite ime predmeta in izbiro potrdite s pritiskom na gumb.</p>
 <form action='/solsko_leto/{{ int(index) }}/odstrani_predmet/' method="POST">

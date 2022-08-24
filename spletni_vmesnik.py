@@ -151,4 +151,19 @@ def odstrani_rezultat(index):
     stanje.odstrani_rezultat(ime_pr, opis)
     shrani()
     bottle.redirect(f'/solsko_leto/{index}/')
+
+@bottle.post('/solsko_leto/<index:int>/nastavi_kolokvije/')
+def nastavi_st_kolokvijev(index):
+    aktualno = stanje.solska_leta[index]
+    stanje.nastavi_aktualno(aktualno)
+    if not je_neprazen_seznam(aktualno.predmeti):
+        bottle.redirect(f'/solsko_leto/{index}/')
+    ime_pr = bottle.request.forms['ime_pr']
+    st = bottle.request.forms['st']
+    if not preveri_int(st):
+        bottle.redirect(f'/solsko_leto/{index}/')
+    stanje.nastavi_st_kolokvijev(ime_pr, int(st))
+    shrani()
+    bottle.redirect(f'/solsko_leto/{index}/')
+
 bottle.run(debug=True, reloader=True)
