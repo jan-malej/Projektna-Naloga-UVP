@@ -28,11 +28,17 @@
                 <thead>
                     <tr>
                         <th scope="col">Opisi</th>
+                        % for opis in pr.opisi_rezultatov():
+                        <th scope="col">{{ opis }}</th>
+                        % end
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <th scope="row">Rezultati</th>
+                        <th scope="row">Rezultati (%)</th>
+                        % for rez in pr.seznam_rezultatov():
+                        <td>{{ rez }}</td>
+                        % end
                     </tr>
                 </tbody>
             </table>
@@ -47,11 +53,17 @@
                 <thead>
                     <tr>
                         <th scope="col">Opisi</th>
+                        % for opis in pr.opisi_ocen():
+                        <th scope="col">{{ opis }}</th>
+                        % end
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <th scope="row">Ocene</th>
+                        % for oc in pr.seznam_ocen():
+                        <td>{{ oc }}</td>
+                        % end
                     </tr>
                 </tbody>
             </table>

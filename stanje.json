@@ -5,20 +5,39 @@
             "predmeti": [
                 {
                     "ime": "mat",
-                    "rezultati": [],
-                    "stevilo_kolokvijev": 4,
+                    "rezultati": [
+                        [
+                            "prvi kolokvij",
+                            100.0
+                        ],
+                        [
+                            "drugi kolokvij",
+                            15.9
+                        ]
+                    ],
+                    "stevilo_kolokvijev": 2,
                     "ocene": [
                         [
                             "pisno",
-                            8
+                            9
                         ]
                     ]
                 },
                 {
                     "ime": "ana",
-                    "rezultati": [],
-                    "stevilo_kolokvijev": 2,
-                    "ocene": []
+                    "rezultati": [
+                        [
+                            "prvi kolokvij",
+                            43.0
+                        ]
+                    ],
+                    "stevilo_kolokvijev": 4,
+                    "ocene": [
+                        [
+                            "pisno",
+                            10
+                        ]
+                    ]
                 }
             ]
         },

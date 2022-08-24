@@ -235,7 +235,7 @@ class Stanje:
         if ime_predmeta in self.aktualno_solsko_leto.imena_predmetov():
             for pr in self.aktualno_solsko_leto.predmeti:
                 if pr.ime == ime_predmeta:
-                    pr.dodaj_rezultat((opis, kolicina))
+                    pr.dodaj_rezultat(opis, kolicina)
         else:
             return "Tega predmeta ni v tem šolskem letu."
 
