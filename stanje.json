@@ -41,21 +41,6 @@
                     "ocene": []
                 }
             ]
-        },
-        {
-            "ime": "2022/23",
-            "predmeti": [
-                {
-                    "ime": "mat",
-                    "rezultati": [],
-                    "stevilo_kolokvijev": 4,
-                    "ocene": []
-                }
-            ]
-        },
-        {
-            "ime": "2023/24",
-            "predmeti": []
         }
     ]
 }

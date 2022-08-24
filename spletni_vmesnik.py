@@ -42,7 +42,7 @@ def osnovna_stran():
 
 @bottle.post('/dodaj_solsko_leto/')
 def dodaj_solsko_leto():
-    ime = bottle.request.forms['Ime']
+    ime = bottle.request.forms.getunicode('Ime')
     if je_neprazen_niz(ime):
         stanje.dodaj_solsko_leto(ime)
         shrani()
@@ -54,7 +54,7 @@ def dodaj_solsko_leto():
 def izbrisi_solsko_leto():
     if not je_neprazen_seznam(stanje.solska_leta):
         bottle.redirect('/')
-    ime = bottle.request.forms['Ime']
+    ime = bottle.request.forms.getunicode('Ime')
     stanje.izbrisi_solsko_leto(ime)
     shrani()
     bottle.redirect('/')
@@ -73,8 +73,8 @@ def solsko_leto(index):
 def dodaj_predmet(index):
     aktualno = stanje.solska_leta[index]
     stanje.nastavi_aktualno(aktualno)
-    ime = bottle.request.forms['ime']
-    st = bottle.request.forms['st']
+    ime = bottle.request.forms.getunicode('ime')
+    st = bottle.request.forms.getunicode('st')
     if not preveri_int(st):
         bottle.redirect(f'/solsko_leto/{index}/')
     stanje.dodaj_predmet(ime, int(st))
@@ -87,7 +87,7 @@ def izbrisi_predmet(index):
     stanje.nastavi_aktualno(aktualno)
     if not je_neprazen_seznam(aktualno.predmeti):
         bottle.redirect(f'/solsko_leto/{index}/')
-    ime = bottle.request.forms['ime']
+    ime = bottle.request.forms.getunicode('ime')
     stanje.odstrani_predmet(ime)
     shrani()
     bottle.redirect(f'/solsko_leto/{index}/')    
@@ -98,9 +98,9 @@ def vpisi_oceno(index):
     stanje.nastavi_aktualno(aktualno)
     if not je_neprazen_seznam(aktualno.predmeti):
         bottle.redirect(f'/solsko_leto/{index}/')
-    ime_pr = bottle.request.forms['ime_pr']
-    opis = bottle.request.forms['opis']
-    kol = bottle.request.forms['kol']
+    ime_pr = bottle.request.forms.getunicode('ime_pr')
+    opis = bottle.request.forms.getunicode('opis')
+    kol = bottle.request.forms.getunicode('kol')
     if je_neprazen_niz(opis) and preveri_int(kol):
         stanje.vpisi_oceno(ime_pr, opis, int(kol))
         shrani()
@@ -114,9 +114,9 @@ def dodaj_rezultat(index):
     stanje.nastavi_aktualno(aktualno)
     if not je_neprazen_seznam(aktualno.predmeti):
         bottle.redirect(f'/solsko_leto/{index}/')
-    ime_pr = bottle.request.forms['ime_pr']
-    opis = bottle.request.forms['opis']
-    kol = bottle.request.forms['kol']
+    ime_pr = bottle.request.forms.getunicode('ime_pr')
+    opis = bottle.request.forms.getunicode('opis')
+    kol = bottle.request.forms.getunicode('kol')
     if je_neprazen_niz(opis) and preveri_float(kol):
         stanje.dodaj_rezultat(ime_pr, opis, float(kol))
         shrani()
@@ -130,8 +130,8 @@ def izbrisi_oceno(index):
     stanje.nastavi_aktualno(aktualno)
     if not je_neprazen_seznam(aktualno.predmeti):
         bottle.redirect(f'/solsko_leto/{index}/')
-    ime_pr = bottle.request.forms['ime_pr']
-    opis = bottle.request.forms['opis']
+    ime_pr = bottle.request.forms.getunicode('ime_pr')
+    opis = bottle.request.forms.getunicode('opis')
     if not je_neprazen_niz(opis):
         bottle.redirect(f'/solsko_leto/{index}/')
     stanje.izbrisi_oceno(ime_pr, opis)
@@ -144,8 +144,8 @@ def odstrani_rezultat(index):
     stanje.nastavi_aktualno(aktualno)
     if not je_neprazen_seznam(aktualno.predmeti):
         bottle.redirect(f'/solsko_leto/{index}/')
-    ime_pr = bottle.request.forms['ime_pr']
-    opis = bottle.request.forms['opis']
+    ime_pr = bottle.request.forms.getunicode('ime_pr')
+    opis = bottle.request.forms.getunicode('opis')
     if not je_neprazen_niz(opis):
         bottle.redirect(f'/solsko_leto/{index}/')
     stanje.odstrani_rezultat(ime_pr, opis)
@@ -158,8 +158,8 @@ def nastavi_st_kolokvijev(index):
     stanje.nastavi_aktualno(aktualno)
     if not je_neprazen_seznam(aktualno.predmeti):
         bottle.redirect(f'/solsko_leto/{index}/')
-    ime_pr = bottle.request.forms['ime_pr']
-    st = bottle.request.forms['st']
+    ime_pr = bottle.request.forms.getunicode('ime_pr')
+    st = bottle.request.forms.getunicode('st')
     if not preveri_int(st):
         bottle.redirect(f'/solsko_leto/{index}/')
     stanje.nastavi_st_kolokvijev(ime_pr, int(st))
