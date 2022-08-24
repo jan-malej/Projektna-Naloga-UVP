@@ -18,7 +18,45 @@
 % end
 % for pr in predmeti:
     <li>
-        {{ pr.ime }}, število kolokvijev: {{ pr.stevilo_kolokvijev }}
+        <strong>{{ pr.ime }}</strong>, število kolokvijev: {{ pr.stevilo_kolokvijev }}
+        <p>
+            Rezultati na kolokvijih:
+            % if pr.rezultati == []:
+                Trenutno ni vpisanih rezultatov.
+            % else:
+            <table>
+                <thead>
+                    <tr>
+                        <th scope="col">Opisi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">Rezultati</th>
+                    </tr>
+                </tbody>
+            </table>
+            % end
+        </p>
+        <p>
+            Ocene:
+            % if pr.ocene == []:
+                Trenutno ni vpisanih ocen.
+            % else:
+            <table>
+                <thead>
+                    <tr>
+                        <th scope="col">Opisi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">Ocene</th>
+                    </tr>
+                </tbody>
+            </table>
+            % end
+        </p>
     </li>
 % end
 </ul>

@@ -7,7 +7,12 @@
                     "ime": "mat",
                     "rezultati": [],
                     "stevilo_kolokvijev": 4,
-                    "ocene": []
+                    "ocene": [
+                        [
+                            "pisno",
+                            8
+                        ]
+                    ]
                 },
                 {
                     "ime": "ana",
@@ -30,7 +35,14 @@
         },
         {
             "ime": "2023/24",
-            "predmeti": []
+            "predmeti": [
+                {
+                    "ime": "abc",
+                    "rezultati": [],
+                    "stevilo_kolokvijev": 4,
+                    "ocene": []
+                }
+            ]
         }
     ]
 }
