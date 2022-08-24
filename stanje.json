@@ -54,14 +54,7 @@
         },
         {
             "ime": "2023/24",
-            "predmeti": [
-                {
-                    "ime": "abc",
-                    "rezultati": [],
-                    "stevilo_kolokvijev": 4,
-                    "ocene": []
-                }
-            ]
+            "predmeti": []
         }
     ]
 }

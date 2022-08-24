@@ -1,5 +1,5 @@
 % rebase('base.html')
-<h1>Trenutno šolsko leto: {{leto.ime}}</h1>
+<h1>Trenutno šolsko leto: {{leto.ime}}. Trenutno povprečje ocen: {{ leto.povprecje() }}</h1>
 <p>Imate naslednje možnosti:
     <ul>
         <li>Dodajte predmet ali izbrišite katerega od predmetov.</li>
@@ -31,6 +31,8 @@
                         % for opis in pr.opisi_rezultatov():
                         <th scope="col">{{ opis }}</th>
                         % end
+                        <th scope="col">Povprečje</th>
+                        <th scope="col">Ocena</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -39,6 +41,8 @@
                         % for rez in pr.seznam_rezultatov():
                         <td>{{ rez }}</td>
                         % end
+                        <td>{{ pr.trenutno_povprecje()}}</td>
+                        <td>{{ pr.trenutna_ocena_iz_rezultatov()}}</td>
                     </tr>
                 </tbody>
             </table>
