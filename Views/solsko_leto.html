@@ -113,7 +113,7 @@
         % for pr in predmeti:
         <option>{{ pr.ime }}</option>
         % end
-    <input type="submit" value="Odstrani predmet!">
+    <input type="submit" value="Izbriši predmet!">
 </form>
 <form action='/solsko_leto/{{ int(index) }}/izbrisi_oceno/' method="POST">
     Ime predmeta: 
@@ -133,5 +133,5 @@
         % end
     </select>
     Opis: <input type="text" name="opis">
-    <input type="submit" value="Odstrani rezultat!">
+    <input type="submit" value="Izbriši rezultat!">
 </form>
