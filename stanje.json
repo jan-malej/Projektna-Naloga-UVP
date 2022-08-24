@@ -25,12 +25,7 @@
                 },
                 {
                     "ime": "ana",
-                    "rezultati": [
-                        [
-                            "prvi kolokvij",
-                            43.0
-                        ]
-                    ],
+                    "rezultati": [],
                     "stevilo_kolokvijev": 4,
                     "ocene": [
                         [
@@ -38,6 +33,12 @@
                             10
                         ]
                     ]
+                },
+                {
+                    "ime": "alg",
+                    "rezultati": [],
+                    "stevilo_kolokvijev": 4,
+                    "ocene": []
                 }
             ]
         },

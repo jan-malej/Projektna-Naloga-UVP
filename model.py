@@ -276,38 +276,3 @@ class Stanje:
         with open(datoteka) as dat:
             slovar = json.load(dat)
             return Stanje.iz_slovarja(slovar)
-
-
-#a = Predmet('analiza', {'ena': 1})
-#b = Predmet('algebra', 2)
-#c = Predmet('fizika', )
-
-#b.dodaj_rezultat('prvi kolokvij', 100)
-#a.dodaj_rezultat('prvi kolokvij', 90)
-#a.nastavi_st_kolokvijev(4)
-#print(a.ime, a.rezultati, a.opisi_rezultatov(), a.opisi_ocen(), a.stevilo_kolokvijev, a.koliko_potrebujem(6))
-#print(b.ime, b.rezultati, b.stevilo_kolokvijev)
-
-##leto = SolskoLeto('2021/22')
-##leto.dodaj_predmet(a)
-##leto.dodaj_predmet(b)
-##leto.dodaj_predmet(c)
-##print(leto.imena_predmetov())
-##leto.odstrani_predmet(b)
-##print(leto.imena_predmetov())
-##print(leto.povprecje())
-##print(leto.predmeti)
-##aa = Stanje()
-##aa.dodaj_solsko_leto('2022')
-##aa.dodaj_predmet('mat', 2, 2)
-
-##aa.nastavi_st_kolokvijev('mat', 4)
-##aa.dodaj_solsko_leto(leto.ime)
-##aa.aktualno_solsko_leto.predmeti = leto.predmeti
-##print(aa.solska_leta)
-
-
-##print(aa.v_slovar())
-##aa.zapisi_v_datoteko('stanje.json')
-##print(aa.imena_solskih_let())
-##print(aa.preberi_iz_datoteke('stanje.json'))
