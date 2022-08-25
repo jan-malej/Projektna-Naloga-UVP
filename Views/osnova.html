@@ -3,7 +3,7 @@
 <h1>Dobrodošli v redovalnici!</h1>
 
 <p>Izberite šolsko leto, ki bi ga radi urejali.</p>
-<p>Lahko pa tudi dodate novo šolsko leto ali izbrišete katerega od obstoječih.</p>
+<p>Lahko pa tudi <a href="#dodaj">dodate</a> novo šolsko leto ali <a href="#izbrisi">izbrišete</a> katerega od obstoječih.</p>
 
 <h1>Vaša šolska leta</h1>
 <ul>
@@ -17,7 +17,7 @@
     % end
 </ul>
 
-<h2>Vpis novega šolskega leta</h2>
+<h2 id="dodaj">Vpis novega šolskega leta</h2>
 <p>Pozor! Vpisati je potrebno še neuporabljeno ime.</p>
 <p>Vpis potrdite s pritiskom na gumb.</p>
 <form action='/dodaj_solsko_leto/' method="POST">
@@ -25,7 +25,7 @@
     <input type="submit" value="Dodaj šolsko leto!">
 </form>
 
-<h2>Izbris šolskega leta</h2>
+<h2 id="izbrisi">Izbris šolskega leta</h2>
 <p>Na spustnem seznamu izberite šolsko leto, ki bi ga radi izbrisali.</p>
 <p>Izbris potrdite s pritiskom na gumb.</p>
 <form action='/izbrisi_solsko_leto/' method="POST">
