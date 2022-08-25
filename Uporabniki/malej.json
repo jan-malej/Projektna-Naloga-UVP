@@ -1,0 +1,41 @@
+{
+    "solska_leta": [
+        {
+            "ime": "2021/2022",
+            "predmeti": [
+                {
+                    "ime": "ana",
+                    "rezultati": [
+                        [
+                            "prvi kolokvij",
+                            88.0
+                        ]
+                    ],
+                    "stevilo_kolokvijev": 4,
+                    "ocene": []
+                },
+                {
+                    "ime": "alg",
+                    "rezultati": [],
+                    "stevilo_kolokvijev": 4,
+                    "ocene": []
+                },
+                {
+                    "ime": "lmn",
+                    "rezultati": [],
+                    "stevilo_kolokvijev": 2,
+                    "ocene": [
+                        [
+                            "pisno",
+                            9
+                        ],
+                        [
+                            "ustno",
+                            10
+                        ]
+                    ]
+                }
+            ]
+        }
+    ]
+}

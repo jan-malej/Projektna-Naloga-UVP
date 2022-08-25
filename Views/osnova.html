@@ -1,6 +1,10 @@
 % rebase('base.html')
-
-<h1>Dobrodošli v redovalnici!</h1>
+<header>
+    <h1>Dobrodošli v redovalnici!</h1>
+    <form action="/logout/" method="POST">
+       <input type="submit" value="Odjava"> 
+    </form>
+</header>
 
 <p>Izberite šolsko leto, ki bi ga radi urejali.</p>
 <p>Lahko pa tudi <a href="#dodaj">dodate</a> novo šolsko leto ali <a href="#izbrisi">izbrišete</a> katerega od obstoječih.</p>

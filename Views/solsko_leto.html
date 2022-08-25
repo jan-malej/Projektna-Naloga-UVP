@@ -1,13 +1,19 @@
 % rebase('base.html')
+<header>
 <h1>Trenutno šolsko leto: {{leto.ime}}. Trenutno povprečje ocen: {{ leto.povprecje() }}</h1>
+<form action="/" method="GET">
+    <input type="submit" value="Nazaj na šolska leta"> 
+ </form>
+ <form action="/logout/" method="POST">
+    <input type="submit" value="Odjava"> 
+ </form>
+</header>
+</header>
 <p>Imate naslednje možnosti:
     <ul>
         <li><a href="#dodaj">Dodajte</a> predmet, oceno ali rezultat s kolokvija. 
         <li>Predmetu <a href="#nastavi">nastavite</a> število kolokvijev.</li>
         <li><a href="#izbrisi">Izbrišite</a> predmet, oceno ali rezultat s kolokvija.</li>
-        <li>
-            <a href="/">Izhod na naslovno stran (pritisnite na povezavo)</a>
-        </li>
     </ul>
 </p>
 <h2>Vaši predmeti, rezultati s kolokvijev in ocene</h2>
