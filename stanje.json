@@ -8,11 +8,15 @@
                     "rezultati": [
                         [
                             "prvi kolokvij",
-                            100.0
+                            88.0
                         ],
                         [
                             "drugi kolokvij",
-                            15.9
+                            67.0
+                        ],
+                        [
+                            "tretji kolovij",
+                            88.0
                         ]
                     ],
                     "stevilo_kolokvijev": 4,

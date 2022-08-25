@@ -48,11 +48,15 @@
             </table>
             <div class="popup" onclick="popup()"><u>Prikaži koliko potrebujem!</u>
                 <span class="popuptext" id="myPopup">
-                    <ul>
+                    % if len(pr.rezultati) >= pr.stevilo_kolokvijev:
+                        {{ pr.koliko_potrebujem(10) }}
+                    % else:
+                        <ul>
                         % for i in range(6, 11):
-                        <li>{{ pr.koliko_potrebujem(i) }}</li> 
-                        % end   
-                    </ul>
+                            <li>{{ pr.koliko_potrebujem(i) }}</li>  
+                        % end  
+                        </ul>
+                    % end
                 </span>
             </div>
 % end    
@@ -93,7 +97,7 @@
 </ul>
 
 <h2>Dodajanje predmeta, ocene ali rezultata s kolokvija</h2>
-<p>Za dodajanje predmeta v polji vpišite ime predmeta in njegovo število kolokvijev (vnos mora biti naravno število).</p>
+<p>Za dodajanje predmeta v polji vpišite ime predmeta in njegovo število kolokvijev (vnos mora biti naravno število). Za rezultat ali oceno pa izberite predmet in vnesite opis ter ustrezno količino.</p>
 <form action='/solsko_leto/{{ int(index) }}/dodaj_predmet/' method="POST">
     Ime predmeta: <input type="text" name="ime">
     Število kolokvijev: <input type="text" name="st">
@@ -134,7 +138,7 @@
 </form>
 
 <h2>Izbris predmeta, ocene ali rezultata s kolokvija</h2>
-<p>Za odstranitev predmeta v spustnem seznamu izberite ime predmeta in izbiro potrdite s pritiskom na gumb.</p>
+<p>Za izbris predmeta v spustnem seznamu izberite ime predmeta in izbiro potrdite s pritiskom na gumb. Za oceno ali rezultat pa je potreben še opis.</p>
 <form action='/solsko_leto/{{ int(index) }}/odstrani_predmet/' method="POST">
     Ime predmeta: 
     <select name="ime">
