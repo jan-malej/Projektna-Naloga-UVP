@@ -47,13 +47,13 @@
                 </tbody>
             </table>
             <div class="popup" onclick="popup()">Prikaži koliko potrebujem!
-                % for i in range(6, 11):
                 <span class="popuptext" id="myPopup">
                     <ul>
-                        <li>{{ pr.koliko_potrebujem(i) }}</li>    
+                        % for i in range(6, 11):
+                        <li>{{ pr.koliko_potrebujem(i) }}</li> 
+                        % end   
                     </ul>
                     </span>
-                % end
             </div>
 % end    
             <script>

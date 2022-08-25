@@ -36,6 +36,10 @@ def je_neprazen_niz(niz):
 def shrani():
     stanje.zapisi_v_datoteko(IME_DATOTEKE_S_STANJEM)
 
+@bottle.get("/Static/<file>")
+def staticni_css(file):
+    return bottle.static_file(file, root="Static")
+
 @bottle.get('/')
 def osnovna_stran():
     return bottle.template('osnova.html', leta = stanje.solska_leta)
