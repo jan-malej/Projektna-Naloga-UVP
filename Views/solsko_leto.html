@@ -99,8 +99,8 @@
 <h2>Dodajanje predmeta, ocene ali rezultata s kolokvija</h2>
 <p>Za dodajanje predmeta v polji vpišite ime predmeta in njegovo število kolokvijev (vnos mora biti naravno število). Za rezultat ali oceno pa izberite predmet in vnesite opis ter ustrezno količino.</p>
 <form action='/solsko_leto/{{ int(index) }}/dodaj_predmet/' method="POST">
-    Ime predmeta: <input type="text" name="ime">
-    Število kolokvijev: <input type="text" name="st">
+    Ime predmeta: <input type="text" name="ime" placeholder="npr. Matematika">
+    Število kolokvijev: <input type="text" name="st" placeholder="npr. 2">
     <input type="submit" value="Dodaj predmet!">
 </form>
 <form action='/solsko_leto/{{ int(index) }}/vpisi_oceno/' method="POST">
@@ -109,8 +109,8 @@
         <option>{{ pr.ime }}</option>
         % end
         </select>
-    Opis: <input type="text" name="opis">
-    Ocena: <input type="text" name="kol">
+    Opis: <input type="text" name="opis" placeholder="npr. Izpit">
+    Ocena: <input type="text" name="kol" placeholder="npr. 10">
     <input type="submit" value="Vpiši oceno!">
 </form>
 <form action='/solsko_leto/{{ int(index) }}/dodaj_rezultat/' method="POST">
@@ -119,8 +119,8 @@
         <option>{{ pr.ime }}</option>
         % end
         </select>
-    Opis: <input type="text" name="opis">
-    Rezultat na kolokviju: <input type="text" name="kol">
+    Opis: <input type="text" name="opis" placeholder="npr. prvi kolokvij">
+    Rezultat na kolokviju: <input type="text" name="kol" placeholder="npr. 100">
     <input type="submit" value="Dodaj rezultat!">
 </form>
 
@@ -133,7 +133,7 @@
         <option>{{ pr.ime }}</option>
         % end
     </select>
-    Število kolokvijev: <input type="text" name="st">
+    Število kolokvijev: <input type="text" name="st" placeholder="npr. 4">
     <input type="submit" value="Nastavi!">
 </form>
 
@@ -154,7 +154,7 @@
         <option>{{ pr.ime }}</option>
         % end
     </select>
-    Opis: <input type="text" name="opis">
+    Opis: <input type="text" name="opis" placeholder="Obstoječi opis">
     <input type="submit" value="Izbriši oceno!">
 </form>
 <form action='/solsko_leto/{{ int(index) }}/odstrani_rezultat/' method="POST">
@@ -164,6 +164,6 @@
         <option>{{ pr.ime }}</option>
         % end
     </select>
-    Opis: <input type="text" name="opis">
+    Opis: <input type="text" name="opis" placeholder="Obstoječi opis">
     <input type="submit" value="Izbriši rezultat!">
 </form>
