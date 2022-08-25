@@ -1,9 +1,11 @@
 import bottle
 import model
 IME_DATOTEKE_S_STANJEM = 'stanje.json'
-SIFRA = 'Posebna skrivna koda'
 GESLO = 'geslo'
 
+with open('skrivnost.txt') as dat:
+    SIFRA = dat.read()
+    
 def preveri_int(vnos):
     """Preveri, če se vnos pretvori v int, ki je večji od 0"""
     try:
