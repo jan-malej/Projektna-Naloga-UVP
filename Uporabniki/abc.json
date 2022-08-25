@@ -1,0 +1,20 @@
+{
+    "solska_leta": [
+        {
+            "ime": "2021/22",
+            "predmeti": [
+                {
+                    "ime": "mat",
+                    "rezultati": [
+                        [
+                            "prvi kolokvij",
+                            90.0
+                        ]
+                    ],
+                    "stevilo_kolokvijev": 4,
+                    "ocene": []
+                }
+            ]
+        }
+    ]
+}
