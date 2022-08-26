@@ -64,6 +64,10 @@ def staticni_css(file):
 def login():
     return bottle.template('log-in.html')
 
+@bottle.get('/napaka_ob_prijavi/')
+def napaka():
+    return bottle.template('napaka-ob-prijavi.html')
+
 @bottle.post('/login/')
 def login_post():
     username = bottle.request.forms.getunicode('username')
@@ -72,7 +76,7 @@ def login_post():
         bottle.response.set_cookie('uporabnisko_ime', username, path='/', secret=SIFRA)
         bottle.redirect('/')
     else:
-        return "Napaka ob prijavi"
+        bottle.redirect('/napaka_ob_prijavi/')
 
 @bottle.post('/logout/')
 def logout_post():
