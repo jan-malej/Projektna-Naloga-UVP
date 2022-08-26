@@ -102,7 +102,12 @@
 </ul>
 
 <h2 id="dodaj">Dodajanje predmeta, ocene ali rezultata kolokvija</h2>
-<p>Za dodajanje predmeta v polji vpišite ime predmeta in njegovo število kolokvijev (vnos mora biti naravno število). Za rezultat ali oceno pa izberite predmet in vnesite opis ter ustrezno količino.</p>
+<p>
+    Za dodajanje predmeta v polji vpišite ime predmeta in njegovo število kolokvijev (vnos mora biti naravno število). 
+    Za rezultat ali oceno pa izberite predmet in vnesite opis ter ustrezno količino. 
+    Imena predmetov se ne smejo podvajati, pri ocenah znotraj predmeta pa se ne sme podvojiti opis ocene,
+     enako velja za rezultate kolokvijev.
+</p>
 <form action='/solsko_leto/{{ int(index) }}/dodaj_predmet/' method="POST">
     Ime predmeta: <input type="text" name="ime" placeholder="npr. Matematika">
     Število kolokvijev: <input type="text" name="st" placeholder="npr. 2">
