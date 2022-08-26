@@ -170,7 +170,7 @@ class Stanje:
             out.append(s_leto.ime)
         return out
 
-    def dodaj_solsko_leto(self, ime): # mogoče bo treba metodo spremeniti da sprejme direktno objekt razreda solsko leto
+    def dodaj_solsko_leto(self, ime): 
         if ime not in self.imena_solskih_let(): 
             leto = SolskoLeto(ime)
             self.solska_leta.append(leto)
