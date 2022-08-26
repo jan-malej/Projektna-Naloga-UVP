@@ -1,4 +1,3 @@
-# Projektna-Naloga-UVP
 # Osebna redovalnica
 Pred vami je redovalnica, v katero lahko študentje vpisujejo svoje rezultate med študijem in imajo nad njimi pregled.
 # Zagon
