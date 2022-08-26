@@ -29,6 +29,7 @@ def je_neprazen_seznam(sez):
     if sez == []:
         return False
     return True
+    
 def je_neprazen_niz(niz):
     """Preveri ali je niz neprazen"""
     if niz == '':

@@ -26,9 +26,7 @@ class Predmet:
         return out
     
     def dodaj_rezultat(self, opis, kolicina):
-        if opis in self.opisi_rezultatov():
-            return "Ta opis je že uporabljen."
-        else:
+        if opis not in self.opisi_rezultatov():
             self.rezultati.append((opis, kolicina))
             
     def odstrani_rezultat(self, opis):
@@ -36,22 +34,16 @@ class Predmet:
             for tup in self.rezultati:
                 if tup[0] == opis:
                     self.rezultati.remove(tup)
-        else:
-            return "Tega rezultata ni v redovalnici."
-
+ 
     def vpisi_oceno(self, opis, kolicina=None):
-        if opis in self.opisi_ocen():
-            return "Ta opis je že uporabljen."
-        else:
+        if opis not in self.opisi_ocen():
             self.ocene.append((opis, kolicina))
-
+ 
     def izbrisi_oceno(self, opis):
         if opis in self.opisi_ocen():
             for tup in self.ocene:
                 if tup[0] == opis:
                     self.ocene.remove(tup)
-        else:
-            return "Te ocene ni v redovalnici."
 
     def seznam_rezultatov(self):
         return [res[1] for res in self.rezultati]
@@ -72,19 +64,13 @@ class Predmet:
         return out
 
     def trenutno_povprecje(self):
-        if self.seznam_rezultatov() == []:
-            return "Noben rezultat še ni bil dodan." 
         return round(self.trenutna_vsota_rezultatov() / len(self.seznam_rezultatov()), 2)
 
     def trenutno_povprecje_ocen(self):
-        if self.seznam_ocen() == []:
-            return "Nobena ocena še ni bila vpisana."
         return round(self.trenutna_vsota_ocen() / len(self.seznam_ocen()), 2)
 
     def trenutna_ocena_iz_rezultatov(self):
-        if self.seznam_rezultatov() == []:
-            return "Noben rezultat še ni bil dodan."
-        elif self.trenutno_povprecje() < 50:
+        if self.trenutno_povprecje() < 50:
             return 5
         elif self.trenutno_povprecje() == 100:
             return 10
@@ -92,11 +78,8 @@ class Predmet:
             return int(self.trenutno_povprecje() // 10 + 1)
 
     def koliko_potrebujem(self, ocena):
-        """Glede na dosedanje rezultate vrne vrednost (minimalen potreben rezultat)/kolokvij, če študent želi doseči oceno."""   
-        if ocena <= 5 or ocena > 10:
-            return "Tu ni kaj izračunati, uporabne ocene so od vključno 6 do vključno 10."
-        
-        elif self.stevilo_kolokvijev <= len(self.seznam_rezultatov()):
+        """Glede na dosedanje rezultate vrne vrednost (minimalen potreben rezultat)/kolokvij, če študent želi doseči oceno."""      
+        if self.stevilo_kolokvijev <= len(self.seznam_rezultatov()):
             return "Prepozno je za tak izračun, imate preveč vnešenih rezultatov."
         minimum = (ocena - 1) * 10
         potrebna_vsota = minimum * self.stevilo_kolokvijev
@@ -139,15 +122,12 @@ class SolskoLeto:
         return out
         
     def dodaj_predmet(self, predmet): #dodamo cel objekt razreda Predmet
-        if predmet.ime in self.imena_predmetov():
-            return "Dva predmeta ne moreta imeti enakih imen. To ime je že uporabljeno."
-        self.predmeti.append(predmet)
+        if predmet.ime not in self.imena_predmetov():
+            self.predmeti.append(predmet)
 
     def odstrani_predmet(self, predmet): #sprejme objekt razreda Predmet in ga odstrani
         if predmet.ime in self.imena_predmetov():
             self.predmeti.remove(predmet)
-        else:    
-            return "Tega predmeta ni v redovalnici."
 
     def povprecje(self):
         if len(self.predmeti) == 0:
@@ -191,12 +171,11 @@ class Stanje:
         return out
 
     def dodaj_solsko_leto(self, ime): # mogoče bo treba metodo spremeniti da sprejme direktno objekt razreda solsko leto
-        if ime in self.imena_solskih_let():
-            return "Dve šolski leti ne smeta imeti enakih imen. To ime je že uporabljeno." 
-        leto = SolskoLeto(ime)
-        self.solska_leta.append(leto)
-        if not self.aktualno_solsko_leto:
-            self.aktualno_solsko_leto = leto
+        if ime not in self.imena_solskih_let(): 
+            leto = SolskoLeto(ime)
+            self.solska_leta.append(leto)
+            if not self.aktualno_solsko_leto:
+                self.aktualno_solsko_leto = leto
 
     def izbrisi_solsko_leto(self, ime):
         for s_leto in self.solska_leta:
@@ -220,40 +199,30 @@ class Stanje:
             for pr in self.aktualno_solsko_leto.predmeti:
                 if pr.ime == ime_predmeta:
                     pr.vpisi_oceno(opis, kolicina)
-        else:
-            return "Tega predmeta ni v tem šolskem letu."
 
     def izbrisi_oceno(self, ime_predmeta, opis):
         if ime_predmeta in self.aktualno_solsko_leto.imena_predmetov():
             for pr in self.aktualno_solsko_leto.predmeti:
                 if pr.ime == ime_predmeta:
                     pr.izbrisi_oceno(opis) 
-        else:
-            return "Tega predmeta ni v tem šolskem letu."
 
     def dodaj_rezultat(self, ime_predmeta, opis, kolicina):
         if ime_predmeta in self.aktualno_solsko_leto.imena_predmetov():
             for pr in self.aktualno_solsko_leto.predmeti:
                 if pr.ime == ime_predmeta:
                     pr.dodaj_rezultat(opis, kolicina)
-        else:
-            return "Tega predmeta ni v tem šolskem letu."
 
     def odstrani_rezultat(self, ime_predmeta, opis):
         if ime_predmeta in self.aktualno_solsko_leto.imena_predmetov():
             for pr in self.aktualno_solsko_leto.predmeti:
                 if pr.ime == ime_predmeta:
                     pr.odstrani_rezultat(opis) 
-        else:
-            return "Tega predmeta ni v tem šolskem letu."
 
     def nastavi_st_kolokvijev(self, ime_predmeta, n):
         if ime_predmeta in self.aktualno_solsko_leto.imena_predmetov():
             for pr in self.aktualno_solsko_leto.predmeti:
                 if pr.ime == ime_predmeta:
                     pr.nastavi_st_kolokvijev(n) 
-        else:
-            return "Tega predmeta ni v tem šolskem letu."
 
     def v_slovar(self):
         return {
