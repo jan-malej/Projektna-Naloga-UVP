@@ -5,7 +5,7 @@ GESLO = 'geslo'
 
 with open('skrivnost.txt') as dat:
     SIFRA = dat.read()
-    
+
 def preveri_int(vnos):
     """Preveri, če se vnos pretvori v int, ki je večji od 0"""
     try:
@@ -81,8 +81,9 @@ def logout_post():
 
 @bottle.get('/')
 def osnovna_stran():
+    uporabnik = bottle.request.get_cookie('uporabnisko_ime', secret=SIFRA)
     stanje = trenutni_uporabnik_stanje()
-    return bottle.template('osnova.html', leta = stanje.solska_leta)
+    return bottle.template('osnova.html', leta = stanje.solska_leta, user=uporabnik)
 
 @bottle.post('/dodaj_solsko_leto/')
 def dodaj_solsko_leto():
