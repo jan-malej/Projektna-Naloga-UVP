@@ -1,9 +1,7 @@
 import bottle
 import model
 GESLO = 'geslo'
-
-with open('skrivnost.txt') as dat:
-    SIFRA = dat.read()
+SIFRA = 'Posebna skrivna koda'    
 
 def preveri_int(vnos):
     """Preveri, če se vnos pretvori v int, ki je večji od 0"""
@@ -29,7 +27,7 @@ def je_neprazen_seznam(sez):
     if sez == []:
         return False
     return True
-    
+
 def je_neprazen_niz(niz):
     """Preveri ali je niz neprazen"""
     if niz == '':
