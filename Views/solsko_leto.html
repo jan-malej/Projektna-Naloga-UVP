@@ -11,12 +11,12 @@
 </header>
 <p>Imate naslednje možnosti:
     <ul>
-        <li><a href="#dodaj">Dodajte</a> predmet, oceno ali rezultat s kolokvija. 
+        <li><a href="#dodaj">Dodajte</a> predmet, oceno ali rezultat kolokvija. 
         <li>Predmetu <a href="#nastavi">nastavite</a> število kolokvijev.</li>
-        <li><a href="#izbrisi">Izbrišite</a> predmet, oceno ali rezultat s kolokvija.</li>
+        <li><a href="#izbrisi">Izbrišite</a> predmet, oceno ali rezultat kolokvija.</li>
     </ul>
 </p>
-<h2>Vaši predmeti, rezultati s kolokvijev in ocene</h2>
+<h2>Vaši predmeti, rezultati kolokvijev in ocene</h2>
 <ul>
 % if predmeti == []:
     <li>Trenutno nimate vpisanih predmetov.</li>
@@ -25,7 +25,7 @@
     <li>
         <strong>{{ pr.ime }}</strong>, število kolokvijev: {{ pr.stevilo_kolokvijev }}
         <p>
-            Rezultati na kolokvijih:
+            Rezultati kolokvijev:
             % if pr.rezultati == []:
                 Trenutno ni vpisanih rezultatov.
             % else:
@@ -101,7 +101,7 @@
 % end
 </ul>
 
-<h2 id="dodaj">Dodajanje predmeta, ocene ali rezultata s kolokvija</h2>
+<h2 id="dodaj">Dodajanje predmeta, ocene ali rezultata kolokvija</h2>
 <p>Za dodajanje predmeta v polji vpišite ime predmeta in njegovo število kolokvijev (vnos mora biti naravno število). Za rezultat ali oceno pa izberite predmet in vnesite opis ter ustrezno količino.</p>
 <form action='/solsko_leto/{{ int(index) }}/dodaj_predmet/' method="POST">
     Ime predmeta: <input type="text" name="ime" placeholder="npr. Matematika">
@@ -125,7 +125,7 @@
         % end
         </select>
     Opis: <input type="text" name="opis" placeholder="npr. prvi kolokvij">
-    Rezultat na kolokviju (v %): <input type="text" name="kol" placeholder="npr. 100">
+    Rezultat kolokvija (v %): <input type="text" name="kol" placeholder="npr. 100">
     <input type="submit" value="Dodaj rezultat!">
 </form>
 
@@ -142,7 +142,7 @@
     <input type="submit" value="Nastavi!">
 </form>
 
-<h2 id="izbrisi">Izbris predmeta, ocene ali rezultata s kolokvija</h2>
+<h2 id="izbrisi">Izbris predmeta, ocene ali rezultata kolokvija</h2>
 <p>Za izbris predmeta v spustnem seznamu izberite ime predmeta in izbiro potrdite s pritiskom na gumb. Za oceno ali rezultat pa je potreben še opis.</p>
 <form action='/solsko_leto/{{ int(index) }}/odstrani_predmet/' method="POST">
     Ime predmeta: 
