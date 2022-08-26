@@ -1,6 +1,5 @@
 import bottle
 import model
-IME_DATOTEKE_S_STANJEM = 'stanje.json'
 GESLO = 'geslo'
 
 with open('skrivnost.txt') as dat:
